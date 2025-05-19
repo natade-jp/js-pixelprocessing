@@ -33,11 +33,11 @@ GUI上で各種画像処理（読み込み/保存、ピクセル編集、補間�
 
 ~~~ js
 import GuiBlocks from "./libs/GuiBlocks.min.js";
-import PixFX from "./libs/PixFX.min.js";
+import PixelProcessing from "./libs/PixelProcessing.min.js";
 
 /**
  * 画像ファイルの読み込みと、画像データのCanvasやIMG要素への変換サンプル
- * （PixFXは直接使っていませんが、画像データ取得は他サンプルで利用）
+ * （PixelProcessingは直接使っていませんが、画像データ取得は他サンプルで利用）
  * @param {GuiBlocks.SPanel} panel 
  */
 const testFileLoad = function(panel) {
@@ -59,7 +59,7 @@ const testFileLoad = function(panel) {
 		// ファイル読込 → Canvasに画像表示
 		canvas.putImage(
 			file[0],
-			undefined,
+			true,
 			undefined,
 			function() {
 				console.log("ロード完了");
@@ -86,7 +86,7 @@ const testFileLoad = function(panel) {
 };
 
 /**
- * PixFXによるピクセルアクセス・書き込みのサンプル
+ * PixelProcessingによるピクセルアクセス・書き込みのサンプル
  * RGBA画像・グレースケール画像どちらも試せます
  * @param {GuiBlocks.SPanel} panel 
  */
@@ -109,21 +109,21 @@ const testWritePixel = function(panel) {
 	const button1 = new GuiBlocks.SButton("RGBA でピクセルに書き込み");
 	canvas.put(button1, GuiBlocks.PUT_TYPE.NEWLINE);
 	button1.addListener(function() {
-		// PixFXのPixDataRGBAでCanvasから画像データを作成
-		const data = new PixFX.PixDataRGBA(canvas.getImageData());
+		// PixelProcessingのPixDataRGBAでCanvasから画像データを作成
+		const data = new PixelProcessing.PixelDataRGBA(canvas.getImageData());
 		// 100ピクセルをランダムで白色を書き込む
 		let i = 0;
 		for(i = 0; i < 100; i++) {
 			const x = Math.floor(Math.random() * data.width);
 			const y = Math.floor(Math.random() * data.height);
-			
-			// PixFXのPixColorRGBAで色情報を作成
-			const color = new PixFX.PixColorRGBA([255, 255, 255, 255]);
+
+			// PixelProcessingのPixColorRGBAで色情報を作成
+			const color = new PixelProcessing.PixelColorRGBA([255, 255, 255, 255]);
 
 			// ピクセルの色を変更
 			data.setPixelInside(x, y, color);
 		}
-		// PixFXで操作した画像をCanvasへ描画
+		// PixelProcessingで操作した画像をCanvasへ描画
 		canvas.putImageData(data.getImageData());
 	});
 	
@@ -131,27 +131,27 @@ const testWritePixel = function(panel) {
 	const button2 = new GuiBlocks.SButton("輝度値 でピクセルに書き込み");
 	button1.put(button2, GuiBlocks.PUT_TYPE.RIGHT);
 	button2.addListener(function() {
-		// PixFXのPixDataYでCanvasから画像データを作成
-		const data = new PixFX.PixDataY(canvas.getImageData());
+		// PixelProcessingのPixDataYでCanvasから画像データを作成
+		const data = new PixelProcessing.PixelDataY(canvas.getImageData());
 		let i = 0;
 		for(i = 0; i < 100; i++) {
 			const x = Math.floor(Math.random() * data.width);
 			const y = Math.floor(Math.random() * data.height);
 
 			// PixColorYで最大輝度(255)を書き込み
-			const color = new PixFX.PixColorY(255);
+			const color = new PixelProcessing.PixelColorY(255);
 
 			// ピクセルの色を変更
 			data.setPixelInside(x, y, color);
 		}
-		// PixFXで操作した画像をCanvasへ描画
+		// PixelProcessingで操作した画像をCanvasへ描画
 		canvas.putImageData(data.getImageData());
 	});
 	
 };
 
 /**
- * PixFXの画像補間（リサイズ/拡大・補間モード変更）のサンプル
+ * PixelProcessingの画像補間（リサイズ/拡大・補間モード変更）のサンプル
  * ラッピング/補間方法をGUIで切り替えられます
  * @param {GuiBlocks.SPanel} panel 
  */
@@ -167,8 +167,8 @@ const testInterpolation = function(panel) {
 	// 小さい画像を16x16サイズで生成（ランダム輝度）
 	const gene = new GuiBlocks.SButton("画像作成");
 	const genefunc = function() {
-    	// 現在のCanvas内容からPixFX用の画像データを作成
-		const data = new PixFX.PixDataY();
+    	// 現在のCanvas内容からPixelProcessing用の画像データを作成
+		const data = new PixelProcessing.PixelDataY();
 		data.putImageData(inputcanvas.getImageData());
 
 		// 画像の全ピクセルをループ（forEachでx, y座標ごとに）
@@ -197,22 +197,22 @@ const testInterpolation = function(panel) {
 	
 	// ラッピング（画像外参照の挙動）の選択
 	const wrapmode = [
-		PixFX.MODE_WRAP.REPEAT,
-		PixFX.MODE_WRAP.CLAMP
+		PixelProcessing.MODE_WRAP.REPEAT,
+		PixelProcessing.MODE_WRAP.CLAMP
 	];
 
-	// 補間モード（PixFXの補間定数）
+	// 補間モード（PixelProcessingの補間定数）
 	const filtermode = [
-		PixFX.MODE_IP.NEAREST_NEIGHBOR,
-		PixFX.MODE_IP.BILINEAR,
-		PixFX.MODE_IP.COSINE,
-		PixFX.MODE_IP.HERMITE4_3,
-		PixFX.MODE_IP.HERMITE4_5,
-		PixFX.MODE_IP.HERMITE16,
-		PixFX.MODE_IP.BICUBIC,
-		PixFX.MODE_IP.BICUBIC_SOFT,
-		PixFX.MODE_IP.BICUBIC_NORMAL,
-		PixFX.MODE_IP.BICUBIC_SHARP
+		PixelProcessing.MODE_IP.NEAREST_NEIGHBOR,
+		PixelProcessing.MODE_IP.BILINEAR,
+		PixelProcessing.MODE_IP.COSINE,
+		PixelProcessing.MODE_IP.HERMITE4_3,
+		PixelProcessing.MODE_IP.HERMITE4_5,
+		PixelProcessing.MODE_IP.HERMITE16,
+		PixelProcessing.MODE_IP.BICUBIC,
+		PixelProcessing.MODE_IP.BICUBIC_SOFT,
+		PixelProcessing.MODE_IP.BICUBIC_NORMAL,
+		PixelProcessing.MODE_IP.BICUBIC_SHARP
 	];
 	
 	const cb_selectertype = new GuiBlocks.SComboBox(wrapmode);
@@ -227,16 +227,16 @@ const testInterpolation = function(panel) {
 	const button = new GuiBlocks.SButton("拡大");
 	cb_interpolationtype.put(button, GuiBlocks.PUT_TYPE.NEWLINE);
 	button.addListener(function() {
-		// PixFX.PixDataYとして画像データを扱う
-		const srcdata = new PixFX.PixDataY(inputcanvas.getImageData());
+		// PixelProcessing.PixelDataYとして画像データを扱う
+		const srcdata = new PixelProcessing.PixelDataY(inputcanvas.getImageData());
 
 		// ラッピング・補間方法をユーザ指定
 		srcdata.setWrapMode(cb_selectertype.getSelectedItem());
 		srcdata.setInterpolationMode(cb_interpolationtype.getSelectedItem());
-		const dstdata = new PixFX.PixDataY(dstWidth, dstHeight);
+		const dstdata = new PixelProcessing.PixelDataY(dstWidth, dstHeight);
 
 		// 結果をCanvasへ描画
-		dstdata.drawPixData(srcdata, 0, 0, dstWidth, dstHeight);
+		dstdata.drawPixelData(srcdata, 0, 0, dstWidth, dstHeight);
 		outputcanvas.putImageData(dstdata.getImageData());
 	});
 	
@@ -253,7 +253,7 @@ const testInterpolation = function(panel) {
 
 
 /**
- * PixFXの画像ブレンド（合成）機能のサンプル
+ * PixelProcessingの画像ブレンド（合成）機能のサンプル
  * ブレンドモード/アルファ値を変更して画像合成が試せます
  * @param {GuiBlocks.SPanel} panel 
  */
@@ -292,12 +292,12 @@ const testBlending = function(panel) {
 	
 	// ブレンドモードの選択
 	const brendtype = [
-		PixFX.MODE_BLEND.NONE,
-		PixFX.MODE_BLEND.ALPHA,
-		PixFX.MODE_BLEND.ADD,
-		PixFX.MODE_BLEND.SUB,
-		PixFX.MODE_BLEND.REVSUB,
-		PixFX.MODE_BLEND.MUL
+		PixelProcessing.MODE_BLEND.NONE,
+		PixelProcessing.MODE_BLEND.ALPHA,
+		PixelProcessing.MODE_BLEND.ADD,
+		PixelProcessing.MODE_BLEND.SUB,
+		PixelProcessing.MODE_BLEND.REVSUB,
+		PixelProcessing.MODE_BLEND.MUL
 	];
 	const cb_brendtype = new GuiBlocks.SComboBox(brendtype);
 	cb_brendtype.setWidth(8);
@@ -315,16 +315,16 @@ const testBlending = function(panel) {
 	const button = new GuiBlocks.SButton("blend");
 	cb_globalalpha.put(button, GuiBlocks.PUT_TYPE.RIGHT);
 	button.addListener(function() {
-		// PixFXで画像データを取得
-		const src1 = new PixFX.PixDataRGBA(canvas_src1.getImageData());
-		const src2 = new PixFX.PixDataRGBA(canvas_src2.getImageData());
+		// PixelProcessingで画像データを取得
+		const src1 = new PixelProcessing.PixelDataRGBA(canvas_src1.getImageData());
+		const src2 = new PixelProcessing.PixelDataRGBA(canvas_src2.getImageData());
 
 		// ブレンドモードとグローバルアルファを設定
 		src1.setBlendType(cb_brendtype.getSelectedItem());
 		src1.globalAlpha = parseFloat(cb_globalalpha.getSelectedItem());
 		
 		// drawPixDataで画像合成
-		src1.drawPixData(src2, 0, 0);
+		src1.drawPixelData(src2, 0, 0);
 
 		// 合成結果をCanvasへ
 		canvas_dst.putImageData(src1.getImageData());
@@ -336,8 +336,8 @@ const testBlending = function(panel) {
 };
 
 /**
- * PixFXの各種フィルタ・減色・ノーマルマップ等の応用サンプル
- * PixFXのfilterXxx系メソッドで様々な画像処理が可能です
+ * PixelProcessingの各種フィルタ・減色・ノーマルマップ等の応用サンプル
+ * PixelProcessingのfilterXxx系メソッドで様々な画像処理が可能です
  * @param {GuiBlocks.SPanel} panel 
  */
 function testEtc(panel) {
@@ -376,7 +376,7 @@ function testEtc(panel) {
 	cb_picturetype.addListener(function () {
 		canvas_src.putImage(cb_picturetype.getSelectedItem());
 	});
-	canvas_src.putImage(picturetype[0]);
+	canvas_src.putImage(picturetype[0], true);
 	
 	// 入力画像表示
 	const label2 = new GuiBlocks.SLabel("入力画像");
@@ -407,14 +407,14 @@ function testEtc(panel) {
 	const button = new GuiBlocks.SButton("実行");
 	cb_filtertype.put(button, GuiBlocks.PUT_TYPE.RIGHT);
 	button.addListener(function() {
-		const src = new PixFX.PixDataRGBA(canvas_src.getImageData());
+		const src = new PixelProcessing.PixelDataRGBA(canvas_src.getImageData());
 		if(cb_filtertype.getSelectedItem() === filtertype[0]) {
-			src.setWrapMode(PixFX.MODE_WRAP.CLAMP);
+			src.setWrapMode(PixelProcessing.MODE_WRAP.CLAMP);
 			src.filterBlur(7); // ブラー（ぼかし）
 			canvas_dst.putImageData(src.getImageData());
 		}
 		else if(cb_filtertype.getSelectedItem() === filtertype[1]) {
-			src.setWrapMode(PixFX.MODE_WRAP.CLAMP);
+			src.setWrapMode(PixelProcessing.MODE_WRAP.CLAMP);
 			src.filterSharp(0.5); // シャープ
 			canvas_dst.putImageData(src.getImageData());
 		}
@@ -424,28 +424,28 @@ function testEtc(panel) {
 		}
 		else if(cb_filtertype.getSelectedItem() === filtertype[3]) {
 			src.grayscale();
-			const height = new PixFX.PixDataY(src);
-			height.setWrapMode(PixFX.MODE_WRAP.REPEAT);
+			const height = new PixelProcessing.PixelDataY(src);
+			height.setWrapMode(PixelProcessing.MODE_WRAP.REPEAT);
 			height.filterGaussian(5);
 			canvas_dst.putImageData(height.getNormalMap().getImageData());
 		}
 		else if(cb_filtertype.getSelectedItem() === filtertype[4]) {
-			src.setWrapMode(PixFX.MODE_WRAP.CLAMP);
+			src.setWrapMode(PixelProcessing.MODE_WRAP.CLAMP);
 			src.filterGaussian(7); // ガウシアンぼかし
 			canvas_dst.putImageData(src.getImageData());
 		}
 		else if(cb_filtertype.getSelectedItem() === filtertype[5]) {
-			src.setWrapMode(PixFX.MODE_WRAP.CLAMP);
+			src.setWrapMode(PixelProcessing.MODE_WRAP.CLAMP);
 			src.filterBilateral(5, 0.8); // バイラテラルフィルタ
 			canvas_dst.putImageData(src.getImageData());
 		}
 		else if(cb_filtertype.getSelectedItem() === filtertype[6]) {
-			src.setWrapMode(PixFX.MODE_WRAP.CLAMP);
+			src.setWrapMode(PixelProcessing.MODE_WRAP.CLAMP);
 			src.filterSoftLens(5, 1.2); // ソフトレンズ風
 			canvas_dst.putImageData(src.getImageData());
 		}
 		else if(cb_filtertype.getSelectedItem() === filtertype[7]) {
-			src.setWrapMode(PixFX.MODE_WRAP.CLAMP);
+			src.setWrapMode(PixelProcessing.MODE_WRAP.CLAMP);
 			src.filterUnSharp(7, 1); // アンシャープ
 			canvas_dst.putImageData(src.getImageData());
 		}
@@ -471,11 +471,11 @@ function testEtc(panel) {
 
 /**
  * サンプルデモのエントリポイント
- * PixFXの機能をGUIから色々試せます
+ * PixelProcessingの機能をGUIから色々試せます
  */
 const main = function() {
 	
-	console.log("PixFX クラスのサンプル");
+	console.log("PixelProcessing クラスのサンプル");
 	const mainpanel = new GuiBlocks.SPanel();
 	mainpanel.putMe("scomponent", GuiBlocks.PUT_TYPE.IN);
 	

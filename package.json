@@ -1,5 +1,5 @@
 {
-	"name": "pixfx",
+	"name": "pixelprocessing",
 	"version": "0.0.1",
 	"description": "A JavaScript library for advanced image processing, including pixel manipulation, blending, color quantization, filtering, and interpolation, designed for use with Canvas and modern web applications.",
 	"keywords": [
@@ -12,7 +12,7 @@
 	"author": "natade-jp <natade3@gmail.com> (https://github.com/natade-jp)",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/natade-jp/js-pixfx.git"
+		"url": "git+https://github.com/natade-jp/js-pixelprocessing.git"
 	},
 	"license": "MIT",
 	"source": "./src/index.js",
@@ -39,9 +39,9 @@
 		"build": "./build"
 	},
 	"bugs": {
-		"url": "https://github.com/natade-jp/js-pixfx/issues"
+		"url": "https://github.com/natade-jp/js-pixelprocessing/issues"
 	},
-	"homepage": "https://github.com/natade-jp/js-pixfx",
+	"homepage": "https://github.com/natade-jp/js-pixelprocessing",
 	"devDependencies": {
 		"@rollup/plugin-commonjs": "^28.0.3",
 		"@rollup/plugin-node-resolve": "^16.0.1",

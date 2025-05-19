@@ -32,7 +32,7 @@ const createData = function (moduleName, input_name, output_name, format, isUgli
 	return data;
 };
 
-const name = "GuiBlocks";
+const name = "PixelProcessing";
 const input = "./src/index.js";
 const data = [];
 

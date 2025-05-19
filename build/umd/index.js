@@ -1,20 +1,20 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
-	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.GuiBlocks = factory());
+	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.PixelProcessing = factory());
 })(this, (function () { 'use strict';
 
 	/**
 	 * 画像処理用の色を表す基底クラス
 	 *
-	 * @module PixFX
+	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
 	 */
 
-	class PixColor {
+	class PixelColor {
 		/**
-		 * PixColor 抽象クラスのコンストラクタ
+		 * PixelColor 抽象クラスのコンストラクタ
 		 * サブクラスで色成分を定義してください
 		 */
 		constructor() {}
@@ -29,7 +29,7 @@
 
 		/**
 		 * この色のコピーを返す
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		clone() {
 			return null;
@@ -37,7 +37,7 @@
 
 		/**
 		 * すべての成分が0の色を返す
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		zero() {
 			return null;
@@ -45,7 +45,7 @@
 
 		/**
 		 * すべての成分が1の色を返す
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		one() {
 			return null;
@@ -54,7 +54,7 @@
 		/**
 		 * 全成分に値を加算
 		 * @param {*} x
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		add(x) {
 			return null;
@@ -63,7 +63,7 @@
 		/**
 		 * 全成分から値を減算
 		 * @param {*} x
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		sub(x) {
 			return null;
@@ -72,7 +72,7 @@
 		/**
 		 * 全成分に値を乗算
 		 * @param {*} x
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		mul(x) {
 			return null;
@@ -81,7 +81,7 @@
 		/**
 		 * 全成分を値で除算
 		 * @param {*} x
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		div(x) {
 			return null;
@@ -89,7 +89,7 @@
 
 		/**
 		 * 全成分の指数関数exp
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		exp() {
 			return null;
@@ -97,7 +97,7 @@
 
 		/**
 		 * 全成分の対数関数log
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		log() {
 			return null;
@@ -106,7 +106,7 @@
 		/**
 		 * 全成分のべき乗
 		 * @param {*} base
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		pow(base) {
 			return null;
@@ -115,7 +115,7 @@
 		/**
 		 * 任意の底の対数
 		 * @param {number} base
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		baselog(base) {
 			return null;
@@ -124,7 +124,7 @@
 		/**
 		 * 値をテーブル参照で変換
 		 * @param {Array<number>} table
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		table(table) {
 			return null;
@@ -132,7 +132,7 @@
 
 		/**
 		 * 全成分をランダムな値に設定
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		random() {
 			return null;
@@ -148,8 +148,8 @@
 
 		/**
 		 * 色同士の加算
-		 * @param {PixColor} c
-		 * @returns {PixColor}
+		 * @param {PixelColor} c
+		 * @returns {PixelColor}
 		 */
 		addColor(c) {
 			return null;
@@ -157,8 +157,8 @@
 
 		/**
 		 * 色同士の減算
-		 * @param {PixColor} c
-		 * @returns {PixColor}
+		 * @param {PixelColor} c
+		 * @returns {PixelColor}
 		 */
 		subColor(c) {
 			return null;
@@ -166,8 +166,8 @@
 
 		/**
 		 * 色同士の乗算
-		 * @param {PixColor} c
-		 * @returns {PixColor}
+		 * @param {PixelColor} c
+		 * @returns {PixelColor}
 		 */
 		mulColor(c) {
 			return null;
@@ -175,8 +175,8 @@
 
 		/**
 		 * 色同士の除算
-		 * @param {PixColor} c
-		 * @returns {PixColor}
+		 * @param {PixelColor} c
+		 * @returns {PixelColor}
 		 */
 		divColor(c) {
 			return null;
@@ -184,8 +184,8 @@
 
 		/**
 		 * 各成分ごとに最大値を返す
-		 * @param {PixColor} c
-		 * @returns {PixColor}
+		 * @param {PixelColor} c
+		 * @returns {PixelColor}
 		 */
 		maxColor(c) {
 			return null;
@@ -193,8 +193,8 @@
 
 		/**
 		 * 各成分ごとに最小値を返す
-		 * @param {PixColor} c
-		 * @returns {PixColor}
+		 * @param {PixelColor} c
+		 * @returns {PixelColor}
 		 */
 		minColor(c) {
 			return null;
@@ -202,7 +202,7 @@
 
 		/**
 		 * 色のノルム（色差の距離）を返す
-		 * @param {number} normType PixColor.NORM_MODE
+		 * @param {number} normType PixelColor.NORM_MODE
 		 * @returns {number}
 		 */
 		norm(normType) {
@@ -211,7 +211,7 @@
 
 		/**
 		 * 色のノルムの高速計算
-		 * @param {number} normType PixColor.NORM_MODE
+		 * @param {number} normType PixelColor.NORM_MODE
 		 * @returns {number}
 		 */
 		normFast(normType) {
@@ -220,8 +220,8 @@
 
 		/**
 		 * 指定色との差分ノルム
-		 * @param {PixColor} c
-		 * @param {number} normType PixColor.NORM_MODE
+		 * @param {PixelColor} c
+		 * @param {number} normType PixelColor.NORM_MODE
 		 * @returns {number}
 		 */
 		normColor(c, normType) {
@@ -230,8 +230,8 @@
 
 		/**
 		 * 指定色との差分ノルム（高速版）
-		 * @param {PixColor} c
-		 * @param {number} normType PixColor.NORM_MODE
+		 * @param {PixelColor} c
+		 * @param {number} normType PixelColor.NORM_MODE
 		 * @returns {number}
 		 */
 		normColorFast(c, normType) {
@@ -249,7 +249,7 @@
 		/**
 		 * アルファ値を設定した新しい色を返す
 		 * @param {number} alpha
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		setBlendAlpha(alpha) {
 			return null;
@@ -257,8 +257,8 @@
 
 		/**
 		 * 指定色のアルファを移植した色を返す
-		 * @param {PixColor} color
-		 * @returns {PixColor}
+		 * @param {PixelColor} color
+		 * @returns {PixelColor}
 		 */
 		exchangeColorAlpha(color) {
 			return null;
@@ -266,7 +266,7 @@
 
 		/**
 		 * 色が一致するか
-		 * @param {PixColor} c
+		 * @param {PixelColor} c
 		 * @returns {boolean}
 		 */
 		equals(c) {
@@ -275,9 +275,9 @@
 
 		/**
 		 * パレットから最も近い2色を探す
-		 * @param {Array<PixColor>} palettes
-		 * @param {number} normType 距離計算方法（PixColor.NORM_MODE）
-		 * @returns {{c1:{color:PixColor,norm:number}, c2:{color:PixColor,norm:number}}}
+		 * @param {Array<PixelColor>} palettes
+		 * @param {number} normType 距離計算方法（PixelColor.NORM_MODE）
+		 * @returns {{c1:{color:PixelColor,norm:number}, c2:{color:PixelColor,norm:number}}}
 		 */
 		searchColor(palettes, normType) {
 			let norm = 0;
@@ -316,7 +316,7 @@
 	 * 色空間での距離計算モード（ノルムの種類）
 	 * @enum {number}
 	 */
-	PixColor.NORM_MODE = {
+	PixelColor.NORM_MODE = {
 		/**
 		 * マンハッタン距離
 		 * @type {number}
@@ -333,7 +333,7 @@
 	/**
 	 * 画像処理用のブレンドモードを管理するクラス
 	 *
-	 * @module PixFX
+	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
 	 */
@@ -346,10 +346,10 @@
 	const BlendFunctions = {
 		/**
 		 * 線形補間
-		 * @param {PixColor} v0 開始色
-		 * @param {PixColor} v1 終了色
+		 * @param {PixelColor} v0 開始色
+		 * @param {PixelColor} v1 終了色
 		 * @param {number} x 補間係数(0～1)
-		 * @returns {PixColor} 補間された色
+		 * @returns {PixelColor} 補間された色
 		 */
 		ipLerp: function (v0, v1, x) {
 			const delta = v1.subColor(v0);
@@ -358,10 +358,10 @@
 
 		/**
 		 * ブレンドなし（上書き）
-		 * @param {PixColor} x 元の色
-		 * @param {PixColor} y 書き込む色
+		 * @param {PixelColor} x 元の色
+		 * @param {PixelColor} y 書き込む色
 		 * @param {number} alpha グローバルアルファ
-		 * @returns {PixColor} 結果色
+		 * @returns {PixelColor} 結果色
 		 */
 		brendNone: function (x, y, alpha) {
 			return y;
@@ -369,10 +369,10 @@
 
 		/**
 		 * アルファブレンド
-		 * @param {PixColor} x 元の色
-		 * @param {PixColor} y 書き込む色
+		 * @param {PixelColor} x 元の色
+		 * @param {PixelColor} y 書き込む色
 		 * @param {number} alpha グローバルアルファ（0～1）
-		 * @returns {PixColor} 結果色
+		 * @returns {PixelColor} 結果色
 		 */
 		brendAlpha: function (x, y, alpha) {
 			const x_alpha = x.getBlendAlpha();
@@ -383,10 +383,10 @@
 
 		/**
 		 * 加算合成
-		 * @param {PixColor} x 元の色
-		 * @param {PixColor} y 書き込む色
+		 * @param {PixelColor} x 元の色
+		 * @param {PixelColor} y 書き込む色
 		 * @param {number} alpha グローバルアルファ（0～1）
-		 * @returns {PixColor} 結果色
+		 * @returns {PixelColor} 結果色
 		 */
 		brendAdd: function (x, y, alpha) {
 			const x_alpha = x.getBlendAlpha();
@@ -397,10 +397,10 @@
 
 		/**
 		 * 減算合成
-		 * @param {PixColor} x 元の色
-		 * @param {PixColor} y 書き込む色
+		 * @param {PixelColor} x 元の色
+		 * @param {PixelColor} y 書き込む色
 		 * @param {number} alpha グローバルアルファ（0～1）
-		 * @returns {PixColor} 結果色
+		 * @returns {PixelColor} 結果色
 		 */
 		brendSub: function (x, y, alpha) {
 			const new_alpha = x.getBlendAlpha();
@@ -411,10 +411,10 @@
 
 		/**
 		 * 逆減算合成
-		 * @param {PixColor} x 元の色
-		 * @param {PixColor} y 書き込む色
+		 * @param {PixelColor} x 元の色
+		 * @param {PixelColor} y 書き込む色
 		 * @param {number} alpha グローバルアルファ（0～1）
-		 * @returns {PixColor} 結果色
+		 * @returns {PixelColor} 結果色
 		 */
 		brendRevSub: function (x, y, alpha) {
 			const new_alpha = y.getBlendAlpha();
@@ -425,10 +425,10 @@
 
 		/**
 		 * 乗算合成
-		 * @param {PixColor} x 元の色
-		 * @param {PixColor} y 書き込む色
+		 * @param {PixelColor} x 元の色
+		 * @param {PixelColor} y 書き込む色
 		 * @param {number} alpha グローバルアルファ（0～1）
-		 * @returns {PixColor} 結果色
+		 * @returns {PixelColor} 結果色
 		 */
 		brendMul: function (x, y, alpha) {
 			const new_alpha = x.getBlendAlpha();
@@ -441,10 +441,10 @@
 	/**
 	 * 画像処理用ブレンドモードを提供するクラス
 	 */
-	class PixBlend {
+	class PixelBlend {
 		/**
 		 * ブレンドモードを指定してインスタンスを生成
-		 * @param {string} mode ブレンドモード（PixBlend.MODE のいずれか）
+		 * @param {string} mode ブレンドモード（PixelBlend.MODE のいずれか）
 		 */
 		constructor(mode) {
 			this.blendfunc = BlendFunctions.brendNone;
@@ -455,39 +455,39 @@
 
 		/**
 		 * 現在のブレンドモードを複製したインスタンスを返す
-		 * @returns {PixBlend}
+		 * @returns {PixelBlend}
 		 */
 		clone() {
-			return new PixBlend(this.blendmode);
+			return new PixelBlend(this.blendmode);
 		}
 
 		/**
 		 * ブレンドモードを設定する
-		 * @param {string} mode ブレンドモード（PixBlend.MODE のいずれか）
+		 * @param {string} mode ブレンドモード（PixelBlend.MODE のいずれか）
 		 */
 		setBlendMode(mode) {
 			this.blendmode = mode;
-			if (mode === PixBlend.MODE.NONE) {
+			if (mode === PixelBlend.MODE.NONE) {
 				this.blendfunc = BlendFunctions.brendNone;
-			} else if (mode === PixBlend.MODE.ALPHA) {
+			} else if (mode === PixelBlend.MODE.ALPHA) {
 				this.blendfunc = BlendFunctions.brendAlpha;
-			} else if (mode === PixBlend.MODE.ADD) {
+			} else if (mode === PixelBlend.MODE.ADD) {
 				this.blendfunc = BlendFunctions.brendAdd;
-			} else if (mode === PixBlend.MODE.SUB) {
+			} else if (mode === PixelBlend.MODE.SUB) {
 				this.blendfunc = BlendFunctions.brendSub;
-			} else if (mode === PixBlend.MODE.REVSUB) {
+			} else if (mode === PixelBlend.MODE.REVSUB) {
 				this.blendfunc = BlendFunctions.brendRevSub;
-			} else if (mode === PixBlend.MODE.MUL) {
+			} else if (mode === PixelBlend.MODE.MUL) {
 				this.blendfunc = BlendFunctions.brendMul;
 			}
 		}
 
 		/**
 		 * 2つの色を指定したブレンドモードで合成する
-		 * @param {PixColor} color1 元の色
-		 * @param {PixColor} color2 書き込む色
+		 * @param {PixelColor} color1 元の色
+		 * @param {PixelColor} color2 書き込む色
 		 * @param {number} alpha グローバルアルファ（0～1）
-		 * @returns {PixColor} 合成結果の色
+		 * @returns {PixelColor} 合成結果の色
 		 */
 		blend(color1, color2, alpha) {
 			return this.blendfunc(color1, color2, alpha);
@@ -498,7 +498,7 @@
 	 * ブレンドモード定数
 	 * @enum {string}
 	 */
-	PixBlend.MODE = {
+	PixelBlend.MODE = {
 		NONE: "NONE", // 上書き
 		ALPHA: "ALPHA", // アルファブレンド
 		ADD: "ADD", // 加算
@@ -511,12 +511,12 @@
 	 * 画像座標のラッピング（境界判定）用のクラス（範囲内のみ許可）
 	 * 画像の端から外にはみ出した場合に「範囲内ならそのまま／範囲外ならnull」を返す
 	 *
-	 * @module PixFX
+	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
 	 */
 
-	class PixWrapInside {
+	class PixelWrapInside {
 		/**
 		 * サイズを指定して初期化
 		 * @param {number} [width=0] 画像幅
@@ -532,10 +532,10 @@
 
 		/**
 		 * このラッピングの複製を作成
-		 * @returns {PixWrapInside}
+		 * @returns {PixelWrapInside}
 		 */
 		clone() {
-			return new PixWrapInside(this.width, this.height);
+			return new PixelWrapInside(this.width, this.height);
 		}
 
 		/**
@@ -569,13 +569,13 @@
 	 * 画像座標のラッピング（はみ出し時は端にクランプする方式）
 	 * 画像の外側を参照した場合、座標を強制的に最も近い端にクランプして返す
 	 *
-	 * @module PixWrapClamp
+	 * @module PixelWrapClamp
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
 	 */
 
 
-	class PixWrapClamp extends PixWrapInside {
+	class PixelWrapClamp extends PixelWrapInside {
 		/**
 		 * サイズを指定して初期化
 		 * @param {number} width 画像幅
@@ -587,10 +587,10 @@
 
 		/**
 		 * このラッピングの複製を作成
-		 * @returns {PixWrapClamp}
+		 * @returns {PixelWrapClamp}
 		 */
 		clone() {
-			return new PixWrapClamp(this.width, this.height);
+			return new PixelWrapClamp(this.width, this.height);
 		}
 
 		/**
@@ -616,13 +616,13 @@
 	 * 画像座標のラッピング（範囲外は繰り返しリピートする方式）
 	 * 範囲外座標は画像サイズでラップ（繰り返し）されます。
 	 *
-	 * @module PixFX
+	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
 	 */
 
 
-	class PixWrapRepeat extends PixWrapInside {
+	class PixelWrapRepeat extends PixelWrapInside {
 		/**
 		 * 画像サイズを指定して初期化
 		 * @param {number} width 画像幅
@@ -634,10 +634,10 @@
 
 		/**
 		 * このラップ（繰り返し）の複製を作成
-		 * @returns {PixWrapRepeat}
+		 * @returns {PixelWrapRepeat}
 		 */
 		clone() {
-			return new PixWrapRepeat(this.width, this.height);
+			return new PixelWrapRepeat(this.width, this.height);
 		}
 
 		/**
@@ -671,16 +671,16 @@
 	 * 画像座標ラッピングの切り替え管理クラス
 	 * 指定モードごとに、範囲外座標の振る舞い（inside, clamp, repeat）を動的に切り替える基底クラス
 	 *
-	 * @module PixFX
+	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
 	 */
 
 
-	class PixWrap {
+	class PixelWrap {
 		/**
 		 * ラッピングモード・画像サイズを指定して初期化
-		 * @param {string} [mode=PixWrap.MODE.INSIDE] ラッピングモード
+		 * @param {string} [mode=PixelWrap.MODE.INSIDE] ラッピングモード
 		 * @param {number} [width=1] 画像幅
 		 * @param {number} [height=1] 画像高さ
 		 */
@@ -692,32 +692,32 @@
 				this.height = height;
 			}
 			if (arguments.length == 3) {
-				this.setPixWrapMode(mode);
+				this.setPixelWrapMode(mode);
 			} else {
-				this.setPixWrapMode(PixWrap.MODE.INSIDE);
+				this.setPixelWrapMode(PixelWrap.MODE.INSIDE);
 			}
 		}
 
 		/**
 		 * このラッピングの複製を作成
-		 * @returns {PixWrap}
+		 * @returns {PixelWrap}
 		 */
 		clone() {
-			return new PixWrap(this.wrapmode, this.width, this.height);
+			return new PixelWrap(this.wrapmode, this.width, this.height);
 		}
 
 		/**
 		 * ラッピングモードを設定（INSIDE, CLAMP, REPEAT）
-		 * @param {string} mode PixWrap.MODEのいずれか
+		 * @param {string} mode PixelWrap.MODEのいずれか
 		 */
-		setPixWrapMode(mode) {
+		setPixelWrapMode(mode) {
 			this.wrapmode = mode;
-			if (mode === PixWrap.MODE.INSIDE) {
-				this.wrap = new PixWrapInside(this.width, this.height);
-			} else if (mode === PixWrap.MODE.CLAMP) {
-				this.wrap = new PixWrapClamp(this.width, this.height);
-			} else if (mode === PixWrap.MODE.REPEAT) {
-				this.wrap = new PixWrapRepeat(this.width, this.height);
+			if (mode === PixelWrap.MODE.INSIDE) {
+				this.wrap = new PixelWrapInside(this.width, this.height);
+			} else if (mode === PixelWrap.MODE.CLAMP) {
+				this.wrap = new PixelWrapClamp(this.width, this.height);
+			} else if (mode === PixelWrap.MODE.REPEAT) {
+				this.wrap = new PixelWrapRepeat(this.width, this.height);
 			}
 		}
 
@@ -753,7 +753,7 @@
 	 * @property {string} CLAMP 範囲外は端にクランプ
 	 * @property {string} REPEAT 範囲外は繰り返し
 	 */
-	PixWrap.MODE = {
+	PixelWrap.MODE = {
 		INSIDE: "INSIDE",
 		CLAMP: "CLAMP",
 		REPEAT: "REPEAT"
@@ -763,7 +763,7 @@
 	 * 補間モード・関数群をまとめたクラス
 	 * 画像内の任意座標の色を求めるための補間手法を実装
 	 *
-	 * @module PixFX
+	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
 	 */
@@ -772,10 +772,10 @@
 	const InterpolationFunctions = {
 		/**
 		 * 線形補間 (Lerp)
-		 * @param {PixColor} v0 開始色
-		 * @param {PixColor} v1 終了色
+		 * @param {PixelColor} v0 開始色
+		 * @param {PixelColor} v1 終了色
 		 * @param {number} x 補間係数 (0～1)
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		ipLerp: function (v0, v1, x) {
 			const delta = v1.subColor(v0);
@@ -784,10 +784,10 @@
 
 		/**
 		 * コサイン補間
-		 * @param {PixColor} v0
-		 * @param {PixColor} v1
+		 * @param {PixelColor} v0
+		 * @param {PixelColor} v1
 		 * @param {number} x
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		ipCosine: function (v0, v1, x) {
 			return InterpolationFunctions.ipLerp(v0, v1, (1.0 - Math.cos(Math.PI * x)) * 0.5);
@@ -795,10 +795,10 @@
 
 		/**
 		 * Hermite補間（2点, 3次式）
-		 * @param {PixColor} v0
-		 * @param {PixColor} v1
+		 * @param {PixelColor} v0
+		 * @param {PixelColor} v1
 		 * @param {number} x
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		ipHermite2p3: function (v0, v1, x) {
 			return InterpolationFunctions.ipLerp(v0, v1, x * x * (3.0 - 2.0 * x));
@@ -806,10 +806,10 @@
 
 		/**
 		 * Hermite補間（2点, 5次式）
-		 * @param {PixColor} v0
-		 * @param {PixColor} v1
+		 * @param {PixelColor} v0
+		 * @param {PixelColor} v1
 		 * @param {number} x
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		ipHermite2p5: function (v0, v1, x) {
 			return InterpolationFunctions.ipLerp(v0, v1, x * x * x * (6.0 * x * x - 15.0 * x + 10.0));
@@ -817,12 +817,12 @@
 
 		/**
 		 * Hermite補間（4点）
-		 * @param {PixColor} v0
-		 * @param {PixColor} v1
-		 * @param {PixColor} v2
-		 * @param {PixColor} v3
+		 * @param {PixelColor} v0
+		 * @param {PixelColor} v1
+		 * @param {PixelColor} v2
+		 * @param {PixelColor} v3
 		 * @param {number} x
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		ipHermite4p: function (v0, v1, v2, v3, x) {
 			const P = v3.subColor(v2).subColor(v0.subColor(v1));
@@ -851,13 +851,13 @@
 
 		/**
 		 * 1次元バイキュービック補間
-		 * @param {PixColor} v0
-		 * @param {PixColor} v1
-		 * @param {PixColor} v2
-		 * @param {PixColor} v3
+		 * @param {PixelColor} v0
+		 * @param {PixelColor} v1
+		 * @param {PixelColor} v2
+		 * @param {PixelColor} v3
 		 * @param {number} x
 		 * @param {number} a
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		ipBicubic: function (v0, v1, v2, v3, x, a) {
 			const w0 = InterpolationFunctions.funcInBicubic(x + 1, a);
@@ -870,12 +870,12 @@
 
 		/**
 		 * バイキュービック補間（ソフト）
-		 * @param {PixColor} v0
-		 * @param {PixColor} v1
-		 * @param {PixColor} v2
-		 * @param {PixColor} v3
+		 * @param {PixelColor} v0
+		 * @param {PixelColor} v1
+		 * @param {PixelColor} v2
+		 * @param {PixelColor} v3
 		 * @param {number} x
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		ipBicubicSoft: function (v0, v1, v2, v3, x) {
 			return InterpolationFunctions.ipBicubic(v0, v1, v2, v3, x, -0.5);
@@ -883,12 +883,12 @@
 
 		/**
 		 * バイキュービック補間（標準）
-		 * @param {PixColor} v0
-		 * @param {PixColor} v1
-		 * @param {PixColor} v2
-		 * @param {PixColor} v3
+		 * @param {PixelColor} v0
+		 * @param {PixelColor} v1
+		 * @param {PixelColor} v2
+		 * @param {PixelColor} v3
 		 * @param {number} x
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		ipBicubicNormal: function (v0, v1, v2, v3, x) {
 			return InterpolationFunctions.ipBicubic(v0, v1, v2, v3, x, -1);
@@ -896,12 +896,12 @@
 
 		/**
 		 * バイキュービック補間（シャープ）
-		 * @param {PixColor} v0
-		 * @param {PixColor} v1
-		 * @param {PixColor} v2
-		 * @param {PixColor} v3
+		 * @param {PixelColor} v0
+		 * @param {PixelColor} v1
+		 * @param {PixelColor} v2
+		 * @param {PixelColor} v3
 		 * @param {number} x
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		ipBicubicSharp: function (v0, v1, v2, v3, x) {
 			return InterpolationFunctions.ipBicubic(v0, v1, v2, v3, x, -1.2);
@@ -909,11 +909,11 @@
 
 		/**
 		 * 2次元バイキュービック補間
-		 * @param {Array<Array<PixColor>>} va 4x4色配列
+		 * @param {Array<Array<PixelColor>>} va 4x4色配列
 		 * @param {number} nx
 		 * @param {number} ny
 		 * @param {number} a
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		ipBicubic2D: function (va, nx, ny, a) {
 			let output = va[0][0].zero();
@@ -937,10 +937,10 @@
 
 		/**
 		 * 2次元バイキュービック補間（ソフト）
-		 * @param {Array<Array<PixColor>>} va
+		 * @param {Array<Array<PixelColor>>} va
 		 * @param {number} nx
 		 * @param {number} ny
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		ipBicubic2DSoft: function (va, nx, ny) {
 			return InterpolationFunctions.ipBicubic2D(va, nx, ny, -0.5);
@@ -948,10 +948,10 @@
 
 		/**
 		 * 2次元バイキュービック補間（標準）
-		 * @param {Array<Array<PixColor>>} va
+		 * @param {Array<Array<PixelColor>>} va
 		 * @param {number} nx
 		 * @param {number} ny
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		ipBicubic2DNormal: function (va, nx, ny) {
 			return InterpolationFunctions.ipBicubic2D(va, nx, ny, -1);
@@ -959,10 +959,10 @@
 
 		/**
 		 * 2次元バイキュービック補間（シャープ）
-		 * @param {Array<Array<PixColor>>} va
+		 * @param {Array<Array<PixelColor>>} va
 		 * @param {number} nx
 		 * @param {number} ny
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		ipBicubic2DSharp: function (va, nx, ny) {
 			return InterpolationFunctions.ipBicubic2D(va, nx, ny, -1.2);
@@ -972,18 +972,18 @@
 	/**
 	 * 画像の補間方式を管理・利用するクラス
 	 */
-	class PixInterpolation {
+	class PixelInterpolation {
 		/**
 		 * 補間モードを指定して初期化
-		 * @param {string} [mode=PixInterpolation.MODE.NEAREST_NEIGHBOR] 補間モード
+		 * @param {string} [mode=PixelInterpolation.MODE.NEAREST_NEIGHBOR] 補間モード
 		 */
 		constructor(mode) {
 			if (arguments.length === 0) {
-				mode = PixInterpolation.MODE.NEAREST_NEIGHBOR;
+				mode = PixelInterpolation.MODE.NEAREST_NEIGHBOR;
 			}
 
 			/**
-			 * 補間モード（PixInterpolation.MODE のいずれか）
+			 * 補間モード（PixelInterpolation.MODE のいずれか）
 			 * @type {string}
 			 */
 			this.ipmode = null;
@@ -996,7 +996,7 @@
 
 			/**
 			 * 補間関数
-			 * @type {function(...*): PixColor}
+			 * @type {function(...*): PixelColor}
 			 */
 			this.ipfunc = null;
 
@@ -1005,46 +1005,46 @@
 
 		/**
 		 * この補間設定のクローンを作成
-		 * @returns {PixInterpolation}
+		 * @returns {PixelInterpolation}
 		 */
 		clone() {
-			return new PixInterpolation(this.ipmode);
+			return new PixelInterpolation(this.ipmode);
 		}
 
 		/**
 		 * 補間モードを設定
-		 * @param {string} ipmode 補間モード（PixInterpolation.MODE のいずれか）
+		 * @param {string} ipmode 補間モード（PixelInterpolation.MODE のいずれか）
 		 */
 		setInterpolationMode(ipmode) {
 			this.ipmode = ipmode;
-			if (ipmode === PixInterpolation.MODE.NEAREST_NEIGHBOR) {
+			if (ipmode === PixelInterpolation.MODE.NEAREST_NEIGHBOR) {
 				this.ipfunc = InterpolationFunctions.ipLerp;
 				this.ipn = 1;
-			} else if (ipmode === PixInterpolation.MODE.BILINEAR) {
+			} else if (ipmode === PixelInterpolation.MODE.BILINEAR) {
 				this.ipfunc = InterpolationFunctions.ipLerp;
 				this.ipn = 2;
-			} else if (ipmode === PixInterpolation.MODE.COSINE) {
+			} else if (ipmode === PixelInterpolation.MODE.COSINE) {
 				this.ipfunc = InterpolationFunctions.ipCosine;
 				this.ipn = 2;
-			} else if (ipmode === PixInterpolation.MODE.HERMITE4_3) {
+			} else if (ipmode === PixelInterpolation.MODE.HERMITE4_3) {
 				this.ipfunc = InterpolationFunctions.ipHermite2p3;
 				this.ipn = 2;
-			} else if (ipmode === PixInterpolation.MODE.HERMITE4_5) {
+			} else if (ipmode === PixelInterpolation.MODE.HERMITE4_5) {
 				this.ipfunc = InterpolationFunctions.ipHermite2p5;
 				this.ipn = 2;
-			} else if (ipmode === PixInterpolation.MODE.HERMITE16) {
+			} else if (ipmode === PixelInterpolation.MODE.HERMITE16) {
 				this.ipfunc = InterpolationFunctions.ipHermite4p;
 				this.ipn = 4;
-			} else if (ipmode === PixInterpolation.MODE.BICUBIC) {
+			} else if (ipmode === PixelInterpolation.MODE.BICUBIC) {
 				this.ipfunc = InterpolationFunctions.ipBicubic2DNormal;
 				this.ipn = 16;
-			} else if (ipmode === PixInterpolation.MODE.BICUBIC_SOFT) {
+			} else if (ipmode === PixelInterpolation.MODE.BICUBIC_SOFT) {
 				this.ipfunc = InterpolationFunctions.ipBicubicSoft;
 				this.ipn = 4;
-			} else if (ipmode === PixInterpolation.MODE.BICUBIC_NORMAL) {
+			} else if (ipmode === PixelInterpolation.MODE.BICUBIC_NORMAL) {
 				this.ipfunc = InterpolationFunctions.ipBicubicNormal;
 				this.ipn = 4;
-			} else if (ipmode === PixInterpolation.MODE.BICUBIC_SHARP) {
+			} else if (ipmode === PixelInterpolation.MODE.BICUBIC_SHARP) {
 				this.ipfunc = InterpolationFunctions.ipBicubicSharp;
 				this.ipn = 4;
 			}
@@ -1053,10 +1053,10 @@
 		/**
 		 * 指定座標の色を補間で取得
 		 * 範囲外や実数座標でも安全に色取得可能
-		 * @param {PixData} imgdata 元画像データ
+		 * @param {PixelData} imgdata 元画像データ
 		 * @param {number} x X座標（整数・実数可）
 		 * @param {number} y Y座標（整数・実数可）
-		 * @returns {PixColor} 補間結果の色
+		 * @returns {PixelColor} 補間結果の色
 		 */
 		getColor(imgdata, x, y) {
 			const rx = Math.floor(x);
@@ -1131,7 +1131,7 @@
 	 * @property {string} BICUBIC_NORMAL バイキュービック補間(標準)
 	 * @property {string} BICUBIC_SHARP バイキュービック補間(シャープ)
 	 */
-	PixInterpolation.MODE = {
+	PixelInterpolation.MODE = {
 		NEAREST_NEIGHBOR: "NEAREST_NEIGHBOR",
 		BILINEAR: "BILINEAR",
 		COSINE: "COSINE",
@@ -1148,12 +1148,12 @@
 	 * 画像処理用のFIR（畳み込み）フィルタ行列クラス
 	 * ブラーやシャープ、ガウシアンなど各種フィルタの行列生成・操作に使用
 	 *
-	 * @module PixFX
+	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
 	 */
 
-	class PixFIRMatrix {
+	class PixelFIRMatrix {
 		/**
 		 * 2次元配列で初期化
 		 * @param {Array<Array<number>>} matrix フィルタ行列（[y][x]の2次元配列）
@@ -1170,16 +1170,16 @@
 
 		/**
 		 * このフィルタ行列の複製を作成
-		 * @returns {PixFIRMatrix}
+		 * @returns {PixelFIRMatrix}
 		 */
 		clone() {
-			return new PixFIRMatrix(this.matrix);
+			return new PixelFIRMatrix(this.matrix);
 		}
 
 		/**
 		 * フィルタ行列の周囲（エッジ）を時計回りに回転
 		 * @param {number} val 回転量（正の整数で右回り）
-		 * @returns {PixFIRMatrix} 回転後の新しい行列
+		 * @returns {PixelFIRMatrix} 回転後の新しい行列
 		 */
 		rotateEdge(val) {
 			// 周囲の値を時計回りに回転させます。
@@ -1232,7 +1232,7 @@
 		/**
 		 * 全要素を指定値で乗算
 		 * @param {number} val 乗算値
-		 * @returns {PixFIRMatrix}
+		 * @returns {PixelFIRMatrix}
 		 */
 		mul(val) {
 			const m = this.clone();
@@ -1262,7 +1262,7 @@
 
 		/**
 		 * 合計値で正規化（全体の合計が1になるようスケーリング）
-		 * @returns {PixFIRMatrix}
+		 * @returns {PixelFIRMatrix}
 		 */
 		normalize() {
 			return this.clone().mul(1.0 / this.sum());
@@ -1271,7 +1271,7 @@
 		/**
 		 * フィルタの中心に指定値を加算
 		 * @param {number} val
-		 * @returns {PixFIRMatrix}
+		 * @returns {PixelFIRMatrix}
 		 */
 		addCenter(val) {
 			const m = this.clone();
@@ -1282,10 +1282,10 @@
 		/**
 		 * Laplacianフィルタ行列を生成
 		 * @static
-		 * @returns {PixFIRMatrix}
+		 * @returns {PixelFIRMatrix}
 		 */
 		static makeLaplacianFilter() {
-			return new PixFIRMatrix([
+			return new PixelFIRMatrix([
 				[0.0, -1, 0.0],
 				[-1, 4.0, -1],
 				[0.0, -1, 0.0]
@@ -1296,10 +1296,10 @@
 		 * シャープフィルタ行列を生成
 		 * @static
 		 * @param {number} power シャープ強度
-		 * @returns {PixFIRMatrix}
+		 * @returns {PixelFIRMatrix}
 		 */
 		static makeSharpenFilter(power) {
-			const m = PixFIRMatrix.makeLaplacianFilter();
+			const m = PixelFIRMatrix.makeLaplacianFilter();
 			return m.mul(power).addCenter(1.0);
 		}
 
@@ -1308,7 +1308,7 @@
 		 * @static
 		 * @param {number} width 行列幅
 		 * @param {number} height 行列高さ
-		 * @returns {PixFIRMatrix}
+		 * @returns {PixelFIRMatrix}
 		 */
 		static makeBlur(width, height) {
 			const m = [];
@@ -1320,7 +1320,7 @@
 					m[y][x] = value;
 				}
 			}
-			return new PixFIRMatrix(m);
+			return new PixelFIRMatrix(m);
 		}
 
 		/**
@@ -1329,7 +1329,7 @@
 		 * @param {number} width 行列幅
 		 * @param {number} height 行列高さ
 		 * @param {number} [sd=1.0] 標準偏差
-		 * @returns {PixFIRMatrix}
+		 * @returns {PixelFIRMatrix}
 		 */
 		static makeGaussianFilter(width, height, sd) {
 			if (sd === undefined) {
@@ -1349,14 +1349,14 @@
 					m[y][x] = v[x] * v[y];
 				}
 			}
-			return new PixFIRMatrix(m).normalize();
+			return new PixelFIRMatrix(m).normalize();
 		}
 
 		/**
 		 * 円形の畳み込み行列を生成
 		 * @static
 		 * @param {number} r 直径（行列の一辺）
-		 * @returns {PixFIRMatrix}
+		 * @returns {PixelFIRMatrix}
 		 */
 		static makeCircle(r) {
 			const m = [];
@@ -1373,7 +1373,7 @@
 					}
 				}
 			}
-			return new PixFIRMatrix(m).normalize();
+			return new PixelFIRMatrix(m).normalize();
 		}
 	}
 
@@ -1381,17 +1381,17 @@
 	 * 画像データ基底クラス（ラスタ画像データ抽象基盤）
 	 * RGBAやY（グレースケール）画像データを扱う基底クラス
 	 *
-	 * @module PixFX
+	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
 	 */
 
 
-	class PixData {
+	class PixelData {
 		/**
 		 * 画像データクラス
 		 * @constructor
-		 * @param {ImageData|PixData|number} [arg1] 画像データまたは幅
+		 * @param {ImageData|PixelData|number} [arg1] 画像データまたは幅
 		 * @param {number} [arg2] 高さ
 		 */
 		constructor(arg1, arg2) {
@@ -1421,25 +1421,25 @@
 
 			/**
 			 * ブレンドモード
-			 * @type {PixBlend}
+			 * @type {PixelBlend}
 			 */
-			this.blend = new PixBlend(PixBlend.MODE.NONE);
+			this.blend = new PixelBlend(PixelBlend.MODE.NONE);
 
 			/**
 			 * 範囲外アクセスの処理ラッパー
-			 * @type {PixWrap}
+			 * @type {PixelWrap}
 			 */
-			this.wrap = new PixWrap(PixWrap.MODE.INSIDE, this.width, this.height);
+			this.wrap = new PixelWrap(PixelWrap.MODE.INSIDE, this.width, this.height);
 
 			/**
 			 * 補間方式
-			 * @type {PixInterpolation}
+			 * @type {PixelInterpolation}
 			 */
-			this.ip = new PixInterpolation(PixInterpolation.MODE.NEAREST_NEIGHBOR);
+			this.ip = new PixelInterpolation(PixelInterpolation.MODE.NEAREST_NEIGHBOR);
 
 			if (arguments.length === 1) {
 				const image = arg1;
-				if (image instanceof ImageData || image instanceof PixData) {
+				if (image instanceof ImageData || image instanceof PixelData) {
 					this.putImageData(image);
 				} else {
 					throw "IllegalArgumentException";
@@ -1457,7 +1457,7 @@
 
 		/**
 		 * 画像データをセット
-		 * @param {ImageData|PixData} imagedata
+		 * @param {ImageData|PixelData} imagedata
 		 */
 		putImageData(imagedata) {
 			// サブクラスで実装
@@ -1479,7 +1479,7 @@
 
 		/**
 		 * 内部データを指定インスタンスxにコピー
-		 * @param {PixData} x
+		 * @param {PixelData} x
 		 * @protected
 		 */
 		_copyData(x) {
@@ -1493,25 +1493,25 @@
 
 		/**
 		 * この画像データのクローンを生成
-		 * @returns {PixData}
+		 * @returns {PixelData}
 		 */
 		clone() {
-			const x = new PixData();
+			const x = new PixelData();
 			this._copyData(x);
 			return x;
 		}
 
 		/**
 		 * 範囲外アクセス時のラッピング方式を設定
-		 * @param {string} wrapmode PixData.MODE_WRAP
+		 * @param {string} wrapmode PixelData.MODE_WRAP
 		 */
 		setWrapMode(wrapmode) {
-			this.wrap.setPixWrapMode(wrapmode);
+			this.wrap.setPixelWrapMode(wrapmode);
 		}
 
 		/**
 		 * 範囲外アクセス時のラッピング方式を取得
-		 * @returns {string} PixData.MODE_WRAP
+		 * @returns {string} PixelData.MODE_WRAP
 		 */
 		getWrapMode() {
 			return this.wrap.wrapmode;
@@ -1519,7 +1519,7 @@
 
 		/**
 		 * 補間モードを設定
-		 * @param {string} ipmode PixData.MODE_IP
+		 * @param {string} ipmode PixelData.MODE_IP
 		 */
 		setInterpolationMode(ipmode) {
 			this.ip.setInterpolationMode(ipmode);
@@ -1527,7 +1527,7 @@
 
 		/**
 		 * 補間モードを取得
-		 * @returns {string} PixData.MODE_IP
+		 * @returns {string} PixelData.MODE_IP
 		 */
 		getInterpolationMode() {
 			return this.ip.ipmode;
@@ -1535,7 +1535,7 @@
 
 		/**
 		 * 書き込み時のブレンドモードを設定
-		 * @param {string} blendmode PixData.MODE_BLEND
+		 * @param {string} blendmode PixelData.MODE_BLEND
 		 */
 		setBlendType(blendmode) {
 			this.blend.setBlendMode(blendmode);
@@ -1543,7 +1543,7 @@
 
 		/**
 		 * 書き込み時のブレンドモードを取得
-		 * @returns {string} PixData.MODE_BLEND
+		 * @returns {string} PixelData.MODE_BLEND
 		 */
 		getBlendType() {
 			return this.blend.blendmode;
@@ -1564,7 +1564,7 @@
 		 * @abstract
 		 * @param {number} x
 		 * @param {number} y
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		getPixelInside(x, y) {
 			return null;
@@ -1576,7 +1576,7 @@
 		 * @abstract
 		 * @param {number} x
 		 * @param {number} y
-		 * @param {PixColor} color
+		 * @param {PixelColor} color
 		 */
 		setPixelInside(x, y, color) {}
 
@@ -1585,7 +1585,7 @@
 		 * @abstract
 		 * @param {number} x
 		 * @param {number} y
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		getPixel(x, y) {
 			const p = this.wrap.getPixelPosition(x, y);
@@ -1600,12 +1600,12 @@
 		 * @abstract
 		 * @param {number} x
 		 * @param {number} y
-		 * @param {PixColor} color
+		 * @param {PixelColor} color
 		 */
 		setPixel(x, y, color) {
 			const p = this.wrap.getPixelPosition(x, y);
 			if (p) {
-				if (this.blend.blendmode === PixData.MODE_BLEND.NONE) {
+				if (this.blend.blendmode === PixelData.MODE_BLEND.NONE) {
 					this.setPixelInside(p[0], p[1], color);
 				} else {
 					const mycolor = this.getPixelInside(p[0], p[1]);
@@ -1620,7 +1620,7 @@
 		 * @abstract
 		 * @param {number} x
 		 * @param {number} y
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		getColor(x, y) {
 			return this.ip.getColor(this, x, y);
@@ -1631,7 +1631,7 @@
 		 * @abstract
 		 * @param {number} u
 		 * @param {number} v
-		 * @returns {PixColor}
+		 * @returns {PixelColor}
 		 */
 		getColorUV(u, v) {
 			return this.getColor(u * this.width, v * this.height);
@@ -1642,17 +1642,17 @@
 		 * @abstract
 		 * @param {number} x
 		 * @param {number} y
-		 * @param {PixColor} color
+		 * @param {PixelColor} color
 		 */
 		setColor(x, y, color) {
 			this.setPixel(Math.floor(x), Math.floor(y), color);
 		}
 
 		/**
-		 * Canvas型の drawImage と同じ使用方法で PixData をドローする
-		 * PixDataRGBA データの上には、PixDataRGBA のみ書き込み可能
-		 * PixDataY    データの上には、PixDataY    のみ書き込み可能
-		 * @param {PixData} image 描画元画像
+		 * Canvas型の drawImage と同じ使用方法で PixelData をドローする
+		 * PixelDataRGBA データの上には、PixelDataRGBA のみ書き込み可能
+		 * PixelDataY    データの上には、PixelDataY    のみ書き込み可能
+		 * @param {PixelData} image 描画元画像
 		 * @param {number} sx 元画像の描画開始X
 		 * @param {number} sy 元画像の描画開始Y
 		 * @param {number} [sw] 元画像の幅
@@ -1662,8 +1662,8 @@
 		 * @param {number} [dw] 描画幅
 		 * @param {number} [dh] 描画高さ
 		 */
-		drawPixData(image, sx, sy, sw, sh, dx, dy, dw, dh) {
-			if (!(image instanceof PixData)) {
+		drawPixelData(image, sx, sy, sw, sh, dx, dy, dw, dh) {
+			if (!(image instanceof PixelData)) {
 				throw "IllegalArgumentException";
 			}
 			if (arguments.length === 3) {
@@ -1713,7 +1713,7 @@
 		/**
 		 * 全画素に対してコールバック関数を適用
 		 * @abstract
-		 * @param {function(PixColor, number, number, PixData):void} callback (color, x, y, this)
+		 * @param {function(PixelColor, number, number, PixelData):void} callback (color, x, y, this)
 		 */
 		forEach(callback) {
 			let x = 0,
@@ -1726,11 +1726,11 @@
 		}
 
 		/**
-		 * 畳み込みフィルタ（PixFIRMatrix）を適用
-		 * @param {PixFIRMatrix} matrix
+		 * 畳み込みフィルタ（PixelFIRMatrix）を適用
+		 * @param {PixelFIRMatrix} matrix
 		 */
 		convolution(matrix) {
-			if (!(matrix instanceof PixFIRMatrix)) {
+			if (!(matrix instanceof PixelFIRMatrix)) {
 				throw "IllegalArgumentException";
 			}
 			let x, y, fx, fy, mx, my;
@@ -1760,11 +1760,11 @@
 		/**
 		 * バイラテラルフィルタ的な畳み込み
 		 * 対象の色に近いほど、フィルタをかける処理となる
-		 * @param {PixFIRMatrix} matrix
+		 * @param {PixelFIRMatrix} matrix
 		 * @param {number} [p=0.8] 強度 0.0～1.0
 		 */
 		convolutionBilateral(matrix, p) {
-			if (!(matrix instanceof PixFIRMatrix)) {
+			if (!(matrix instanceof PixelFIRMatrix)) {
 				throw "IllegalArgumentException";
 			}
 			if (p === undefined) {
@@ -1797,7 +1797,7 @@
 								continue;
 							}
 							const newfilter =
-								exptable[Math.floor(tgtcolor.normColor(thiscolor, PixColor.NORM_MODE.EUGRID))] * m[my][mx];
+								exptable[Math.floor(tgtcolor.normColor(thiscolor, PixelColor.NORM_MODE.EUGRID))] * m[my][mx];
 							newcolor = newcolor.addColor(tgtcolor.mul(newfilter));
 							sumfilter += newfilter;
 						}
@@ -1810,11 +1810,11 @@
 
 		/**
 		 * 指数空間での畳み込み
-		 * @param {PixFIRMatrix} matrix
+		 * @param {PixelFIRMatrix} matrix
 		 * @param {number} [e=1.2] 底(1.01-1.2)
 		 */
 		convolutionExp(matrix, e) {
-			if (!(matrix instanceof PixFIRMatrix)) {
+			if (!(matrix instanceof PixelFIRMatrix)) {
 				throw "IllegalArgumentException";
 			}
 			if (e === undefined) {
@@ -1850,11 +1850,11 @@
 
 		/**
 		 * アンシャープ畳み込み
-		 * @param {PixFIRMatrix} matrix
+		 * @param {PixelFIRMatrix} matrix
 		 * @param {number} rate
 		 */
 		convolutionUnSharp(matrix, rate) {
-			if (!(matrix instanceof PixFIRMatrix)) {
+			if (!(matrix instanceof PixelFIRMatrix)) {
 				throw "IllegalArgumentException";
 			}
 			let x, y, fx, fy, mx, my;
@@ -1888,7 +1888,7 @@
 		 * @param {number} power 強度
 		 */
 		filterSharp(power) {
-			const m = PixFIRMatrix.makeSharpenFilter(power);
+			const m = PixelFIRMatrix.makeSharpenFilter(power);
 			this.convolution(m);
 		}
 
@@ -1898,9 +1898,9 @@
 		 */
 		filterBlur(n) {
 			let m;
-			m = PixFIRMatrix.makeBlur(n, 1);
+			m = PixelFIRMatrix.makeBlur(n, 1);
 			this.convolution(m);
-			m = PixFIRMatrix.makeBlur(1, n);
+			m = PixelFIRMatrix.makeBlur(1, n);
 			this.convolution(m);
 		}
 
@@ -1910,9 +1910,9 @@
 		 */
 		filterGaussian(n) {
 			let m;
-			m = PixFIRMatrix.makeGaussianFilter(n, 1);
+			m = PixelFIRMatrix.makeGaussianFilter(n, 1);
 			this.convolution(m);
-			m = PixFIRMatrix.makeGaussianFilter(1, n);
+			m = PixelFIRMatrix.makeGaussianFilter(1, n);
 			this.convolution(m);
 		}
 
@@ -1922,7 +1922,7 @@
 		 * @param {number} rate
 		 */
 		filterUnSharp(n, rate) {
-			const m = PixFIRMatrix.makeGaussianFilter(n, n);
+			const m = PixelFIRMatrix.makeGaussianFilter(n, n);
 			this.convolutionUnSharp(m, rate);
 		}
 
@@ -1932,7 +1932,7 @@
 		 * @param {number} p 強度（0.0～1.0）
 		 */
 		filterBilateral(n, p) {
-			const m = PixFIRMatrix.makeGaussianFilter(n, n);
+			const m = PixelFIRMatrix.makeGaussianFilter(n, n);
 			this.convolutionBilateral(m, p);
 		}
 
@@ -1942,7 +1942,7 @@
 		 * @param {number} e 底(1.01-1.2)
 		 */
 		filterSoftLens(n, e) {
-			const m = PixFIRMatrix.makeCircle(n);
+			const m = PixelFIRMatrix.makeCircle(n);
 			this.convolutionExp(m, e);
 		}
 	}
@@ -1951,30 +1951,30 @@
 	 * 範囲外アクセスラップ方式の定数
 	 * @enum {string}
 	 */
-	PixData.MODE_WRAP = PixWrap.MODE;
+	PixelData.MODE_WRAP = PixelWrap.MODE;
 
 	/**
 	 * 補間モードの定数
 	 * @enum {string}
 	 */
-	PixData.MODE_IP = PixInterpolation.MODE;
+	PixelData.MODE_IP = PixelInterpolation.MODE;
 
 	/**
 	 * ブレンドモードの定数
 	 * @enum {string}
 	 */
-	PixData.MODE_BLEND = PixBlend.MODE;
+	PixelData.MODE_BLEND = PixelBlend.MODE;
 
 	/**
 	 * RGBA色（Red, Green, Blue, Alpha）を扱う色クラス
 	 *
-	 * @module PixFX
+	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
 	 */
 
 
-	class PixColorRGBA extends PixColor {
+	class PixelColorRGBA extends PixelColor {
 		/**
 		 * RGBA色を生成
 		 * @param {Array<number>} color [R, G, B, A]（0-255, 0-255, 0-255, 0-255）
@@ -2015,87 +2015,87 @@
 
 		/**
 		 * この色のコピーを返す
-		 * @returns {PixColorRGBA}
+		 * @returns {PixelColorRGBA}
 		 */
 		clone() {
-			return new PixColorRGBA(this.rgba);
+			return new PixelColorRGBA(this.rgba);
 		}
 
 		/**
 		 * すべての成分が0のRGBA色を返す
-		 * @returns {PixColorRGBA}
+		 * @returns {PixelColorRGBA}
 		 */
 		zero() {
-			return new PixColorRGBA([0.0, 0.0, 0.0, 0.0]);
+			return new PixelColorRGBA([0.0, 0.0, 0.0, 0.0]);
 		}
 
 		/**
 		 * すべての成分が1のRGBA色を返す
-		 * @returns {PixColorRGBA}
+		 * @returns {PixelColorRGBA}
 		 */
 		one() {
-			return new PixColorRGBA([1.0, 1.0, 1.0, 1.0]);
+			return new PixelColorRGBA([1.0, 1.0, 1.0, 1.0]);
 		}
 
 		/**
 		 * 全成分に値を加算
 		 * @param {number} x
-		 * @returns {PixColorRGBA}
+		 * @returns {PixelColorRGBA}
 		 */
 		add(x) {
-			return new PixColorRGBA([this.r + x, this.g + x, this.b + x, this.a + x]);
+			return new PixelColorRGBA([this.r + x, this.g + x, this.b + x, this.a + x]);
 		}
 
 		/**
 		 * 全成分から値を減算
 		 * @param {number} x
-		 * @returns {PixColorRGBA}
+		 * @returns {PixelColorRGBA}
 		 */
 		sub(x) {
-			return new PixColorRGBA([this.r - x, this.g - x, this.b - x, this.a - x]);
+			return new PixelColorRGBA([this.r - x, this.g - x, this.b - x, this.a - x]);
 		}
 
 		/**
 		 * 全成分に値を乗算
 		 * @param {number} x
-		 * @returns {PixColorRGBA}
+		 * @returns {PixelColorRGBA}
 		 */
 		mul(x) {
-			return new PixColorRGBA([this.r * x, this.g * x, this.b * x, this.a * x]);
+			return new PixelColorRGBA([this.r * x, this.g * x, this.b * x, this.a * x]);
 		}
 
 		/**
 		 * 全成分を値で除算
 		 * @param {number} x
-		 * @returns {PixColorRGBA}
+		 * @returns {PixelColorRGBA}
 		 */
 		div(x) {
-			return new PixColorRGBA([this.r / x, this.g / x, this.b / x, this.a / x]);
+			return new PixelColorRGBA([this.r / x, this.g / x, this.b / x, this.a / x]);
 		}
 
 		/**
 		 * 全成分に exp() を適用
-		 * @returns {PixColorRGBA}
+		 * @returns {PixelColorRGBA}
 		 */
 		exp() {
-			return new PixColorRGBA([Math.exp(this.r), Math.exp(this.g), Math.exp(this.b), Math.exp(this.a)]);
+			return new PixelColorRGBA([Math.exp(this.r), Math.exp(this.g), Math.exp(this.b), Math.exp(this.a)]);
 		}
 
 		/**
 		 * 全成分に log() を適用
-		 * @returns {PixColorRGBA}
+		 * @returns {PixelColorRGBA}
 		 */
 		log() {
-			return new PixColorRGBA([Math.log(this.r), Math.log(this.g), Math.log(this.b), Math.log(this.a)]);
+			return new PixelColorRGBA([Math.log(this.r), Math.log(this.g), Math.log(this.b), Math.log(this.a)]);
 		}
 
 		/**
 		 * 全成分を base のべき乗にする
 		 * @param {number} base
-		 * @returns {PixColorRGBA}
+		 * @returns {PixelColorRGBA}
 		 */
 		pow(base) {
-			return new PixColorRGBA([
+			return new PixelColorRGBA([
 				Math.pow(base, this.r),
 				Math.pow(base, this.g),
 				Math.pow(base, this.b),
@@ -2106,11 +2106,11 @@
 		/**
 		 * 任意の底の対数
 		 * @param {number} base
-		 * @returns {PixColorRGBA}
+		 * @returns {PixelColorRGBA}
 		 */
 		baselog(base) {
 			const x = 1.0 / Math.log(base);
-			return new PixColorRGBA([
+			return new PixelColorRGBA([
 				Math.log(this.r) * x,
 				Math.log(this.g) * x,
 				Math.log(this.b) * x,
@@ -2121,10 +2121,10 @@
 		/**
 		 * テーブル参照で変換
 		 * @param {Array<number>} table
-		 * @returns {PixColorRGBA}
+		 * @returns {PixelColorRGBA}
 		 */
 		table(table) {
-			return new PixColorRGBA([
+			return new PixelColorRGBA([
 				table[Math.round(this.r)],
 				table[Math.round(this.g)],
 				table[Math.round(this.b)],
@@ -2134,10 +2134,10 @@
 
 		/**
 		 * ランダムなRGBA色を返す
-		 * @returns {PixColorRGBA}
+		 * @returns {PixelColorRGBA}
 		 */
 		random() {
-			return new PixColorRGBA([
+			return new PixelColorRGBA([
 				Math.floor(Math.random() * 256),
 				Math.floor(Math.random() * 256),
 				Math.floor(Math.random() * 256),
@@ -2155,47 +2155,47 @@
 
 		/**
 		 * 色同士の加算
-		 * @param {PixColorRGBA} c
-		 * @returns {PixColorRGBA}
+		 * @param {PixelColorRGBA} c
+		 * @returns {PixelColorRGBA}
 		 */
 		addColor(c) {
-			return new PixColorRGBA([this.r + c.r, this.g + c.g, this.b + c.b, this.a + c.a]);
+			return new PixelColorRGBA([this.r + c.r, this.g + c.g, this.b + c.b, this.a + c.a]);
 		}
 
 		/**
 		 * 色同士の減算
-		 * @param {PixColorRGBA} c
-		 * @returns {PixColorRGBA}
+		 * @param {PixelColorRGBA} c
+		 * @returns {PixelColorRGBA}
 		 */
 		subColor(c) {
-			return new PixColorRGBA([this.r - c.r, this.g - c.g, this.b - c.b, this.a - c.a]);
+			return new PixelColorRGBA([this.r - c.r, this.g - c.g, this.b - c.b, this.a - c.a]);
 		}
 
 		/**
 		 * 色同士の乗算
-		 * @param {PixColorRGBA} c
-		 * @returns {PixColorRGBA}
+		 * @param {PixelColorRGBA} c
+		 * @returns {PixelColorRGBA}
 		 */
 		mulColor(c) {
-			return new PixColorRGBA([this.r * c.r, this.g * c.g, this.b * c.b, this.a * c.a]);
+			return new PixelColorRGBA([this.r * c.r, this.g * c.g, this.b * c.b, this.a * c.a]);
 		}
 
 		/**
 		 * 色同士の除算
-		 * @param {PixColorRGBA} c
-		 * @returns {PixColorRGBA}
+		 * @param {PixelColorRGBA} c
+		 * @returns {PixelColorRGBA}
 		 */
 		divColor(c) {
-			return new PixColorRGBA([this.r / c.r, this.g / c.g, this.b / c.b, this.a / c.a]);
+			return new PixelColorRGBA([this.r / c.r, this.g / c.g, this.b / c.b, this.a / c.a]);
 		}
 
 		/**
 		 * 各成分ごとに最大値を返す
-		 * @param {PixColorRGBA} c
-		 * @returns {PixColorRGBA}
+		 * @param {PixelColorRGBA} c
+		 * @returns {PixelColorRGBA}
 		 */
 		maxColor(c) {
-			return new PixColorRGBA([
+			return new PixelColorRGBA([
 				Math.max(c.r, this.r),
 				Math.max(c.g, this.g),
 				Math.max(c.b, this.b),
@@ -2205,11 +2205,11 @@
 
 		/**
 		 * 各成分ごとに最小値を返す
-		 * @param {PixColorRGBA} c
-		 * @returns {PixColorRGBA}
+		 * @param {PixelColorRGBA} c
+		 * @returns {PixelColorRGBA}
 		 */
 		minColor(c) {
-			return new PixColorRGBA([
+			return new PixelColorRGBA([
 				Math.min(c.r, this.r),
 				Math.min(c.g, this.g),
 				Math.min(c.b, this.b),
@@ -2218,26 +2218,26 @@
 		}
 		/**
 		 * 色差の距離を計算（マンハッタン／ユークリッド）
-		 * @param {number} normType PixColor.NORM_MODE
+		 * @param {number} normType PixelColor.NORM_MODE
 		 * @returns {number}
 		 */
 		norm(normType) {
-			if (normType === PixColor.NORM_MODE.MANHATTEN) {
+			if (normType === PixelColor.NORM_MODE.MANHATTEN) {
 				return (Math.abs(this.r) + Math.abs(this.g) + Math.abs(this.b)) / 3;
-			} else if (normType === PixColor.NORM_MODE.EUGRID) {
+			} else if (normType === PixelColor.NORM_MODE.EUGRID) {
 				return Math.sqrt(this.r * this.r + this.g * this.g + this.b * this.b) / 3;
 			}
 		}
 
 		/**
 		 * 色差の距離を高速計算
-		 * @param {number} normType PixColor.NORM_MODE
+		 * @param {number} normType PixelColor.NORM_MODE
 		 * @returns {number}
 		 */
 		normFast(normType) {
-			if (normType === PixColor.NORM_MODE.MANHATTEN) {
+			if (normType === PixelColor.NORM_MODE.MANHATTEN) {
 				return Math.abs(this.r) + Math.abs(this.g) + Math.abs(this.b);
-			} else if (normType === PixColor.NORM_MODE.EUGRID) {
+			} else if (normType === PixelColor.NORM_MODE.EUGRID) {
 				return this.r * this.r + this.g * this.g + this.b * this.b;
 			}
 		}
@@ -2253,7 +2253,7 @@
 		/**
 		 * 指定アルファ値（0～1）で新しい色を返す
 		 * @param {number} x
-		 * @returns {PixColorRGBA}
+		 * @returns {PixelColorRGBA}
 		 */
 		setBlendAlpha(x) {
 			const color = this.clone();
@@ -2263,11 +2263,11 @@
 
 		/**
 		 * 指定色のアルファ値をコピーして返す
-		 * @param {PixColorRGBA} color
-		 * @returns {PixColorRGBA}
+		 * @param {PixelColorRGBA} color
+		 * @returns {PixelColorRGBA}
 		 */
 		exchangeColorAlpha(color) {
-			return new PixColorRGBA([this.r, this.g, this.b, color.a]);
+			return new PixelColorRGBA([this.r, this.g, this.b, color.a]);
 		}
 
 		/**
@@ -2304,7 +2304,7 @@
 
 		/**
 		 * 色が一致するか
-		 * @param {PixColorRGBA} c
+		 * @param {PixelColorRGBA} c
 		 * @returns {boolean}
 		 */
 		equals(c) {
@@ -2322,10 +2322,10 @@
 		/**
 		 * 4x4行列を色に乗算して新しい色を返す
 		 * @param {Array<Array<number>>} m 4x4行列
-		 * @returns {PixColorRGBA}
+		 * @returns {PixelColorRGBA}
 		 */
 		mulMatrix(m) {
-			return new PixColorRGBA([
+			return new PixelColorRGBA([
 				this.r * m[0][0] + this.g * m[0][1] + this.b * m[0][2] + this.a * m[0][3],
 				this.r * m[1][0] + this.g * m[1][1] + this.b * m[1][2] + this.a * m[1][3],
 				this.r * m[2][0] + this.g * m[2][1] + this.b * m[2][2] + this.a * m[2][3],
@@ -2337,13 +2337,13 @@
 	/**
 	 * 輝度（Y成分・グレースケール）のみを扱う色クラス
 	 *
-	 * @module PixFX
+	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
 	 */
 
 
-	class PixColorY extends PixColor {
+	class PixelColorY extends PixelColor {
 		/**
 		 * 輝度値（Y成分）で初期化
 		 * @param {number} color 輝度（0.0～255.0）
@@ -2364,113 +2364,113 @@
 
 		/**
 		 * この色のコピーを返す
-		 * @returns {PixColorY}
+		 * @returns {PixelColorY}
 		 */
 		clone() {
-			return new PixColorY(this.y);
+			return new PixelColorY(this.y);
 		}
 
 		/**
 		 * 輝度値0.0の色を返す
-		 * @returns {PixColorY}
+		 * @returns {PixelColorY}
 		 */
 		zero() {
-			return new PixColorY(0.0);
+			return new PixelColorY(0.0);
 		}
 
 		/**
 		 * 輝度値1.0の色を返す
-		 * @returns {PixColorY}
+		 * @returns {PixelColorY}
 		 */
 		one() {
-			return new PixColorY(1.0);
+			return new PixelColorY(1.0);
 		}
 
 		/**
 		 * 輝度値に加算
 		 * @param {number} x
-		 * @returns {PixColorY}
+		 * @returns {PixelColorY}
 		 */
 		add(x) {
-			return new PixColorY(this.y + x);
+			return new PixelColorY(this.y + x);
 		}
 
 		/**
 		 * 輝度値から減算
 		 * @param {number} x
-		 * @returns {PixColorY}
+		 * @returns {PixelColorY}
 		 */
 		sub(x) {
-			return new PixColorY(this.y - x);
+			return new PixelColorY(this.y - x);
 		}
 
 		/**
 		 * 輝度値に乗算
 		 * @param {number} x
-		 * @returns {PixColorY}
+		 * @returns {PixelColorY}
 		 */
 		mul(x) {
-			return new PixColorY(this.y * x);
+			return new PixelColorY(this.y * x);
 		}
 
 		/**
 		 * 輝度値を除算
 		 * @param {number} x
-		 * @returns {PixColorY}
+		 * @returns {PixelColorY}
 		 */
 		div(x) {
-			return new PixColorY(this.y / x);
+			return new PixelColorY(this.y / x);
 		}
 
 		/**
 		 * 輝度値にexp()を適用
-		 * @returns {PixColorY}
+		 * @returns {PixelColorY}
 		 */
 		exp() {
-			return new PixColorY(Math.exp(this.y));
+			return new PixelColorY(Math.exp(this.y));
 		}
 
 		/**
 		 * 輝度値にlog()を適用
-		 * @returns {PixColorY}
+		 * @returns {PixelColorY}
 		 */
 		log() {
-			return new PixColorY(Math.log(this.y));
+			return new PixelColorY(Math.log(this.y));
 		}
 
 		/**
 		 * 輝度値をbaseのべき乗にする
 		 * @param {number} base
-		 * @returns {PixColorY}
+		 * @returns {PixelColorY}
 		 */
 		pow(base) {
-			return new PixColorY(Math.pow(base, this.y));
+			return new PixelColorY(Math.pow(base, this.y));
 		}
 
 		/**
 		 * 任意の底の対数
 		 * @param {number} base
-		 * @returns {PixColorY}
+		 * @returns {PixelColorY}
 		 */
 		baselog(base) {
-			return new PixColorY(Math.log(this.y) / Math.log(base));
+			return new PixelColorY(Math.log(this.y) / Math.log(base));
 		}
 
 		/**
 		 * テーブル参照による変換
 		 * @param {Array<number>} table
-		 * @returns {PixColorY}
+		 * @returns {PixelColorY}
 		 */
 		table(table) {
-			return new PixColorY(table[Math.floor(this.y)]);
+			return new PixelColorY(table[Math.floor(this.y)]);
 		}
 
 		/**
 		 * ランダムな輝度値（0～255）
-		 * @returns {PixColorY}
+		 * @returns {PixelColorY}
 		 */
 		random() {
-			return new PixColorY(Math.random() * 256);
+			return new PixelColorY(Math.random() * 256);
 		}
 
 		/**
@@ -2483,56 +2483,56 @@
 
 		/**
 		 * 他の輝度色と加算
-		 * @param {PixColorY} c
-		 * @returns {PixColorY}
+		 * @param {PixelColorY} c
+		 * @returns {PixelColorY}
 		 */
 		addColor(c) {
-			return new PixColorY(this.y + c.y);
+			return new PixelColorY(this.y + c.y);
 		}
 
 		/**
 		 * 他の輝度色と減算
-		 * @param {PixColorY} c
-		 * @returns {PixColorY}
+		 * @param {PixelColorY} c
+		 * @returns {PixelColorY}
 		 */
 		subColor(c) {
-			return new PixColorY(this.y - c.y);
+			return new PixelColorY(this.y - c.y);
 		}
 
 		/**
 		 * 他の輝度色と乗算
-		 * @param {PixColorY} c
-		 * @returns {PixColorY}
+		 * @param {PixelColorY} c
+		 * @returns {PixelColorY}
 		 */
 		mulColor(c) {
-			return new PixColorY(this.y * c.y);
+			return new PixelColorY(this.y * c.y);
 		}
 
 		/**
 		 * 他の輝度色と除算
-		 * @param {PixColorY} c
-		 * @returns {PixColorY}
+		 * @param {PixelColorY} c
+		 * @returns {PixelColorY}
 		 */
 		divColor(c) {
-			return new PixColorY(this.y / c.y);
+			return new PixelColorY(this.y / c.y);
 		}
 
 		/**
 		 * 各成分ごとに最大値を返す
-		 * @param {PixColorY} c
-		 * @returns {PixColorY}
+		 * @param {PixelColorY} c
+		 * @returns {PixelColorY}
 		 */
 		maxColor(c) {
-			return new PixColorY(Math.max(c.y, this.y));
+			return new PixelColorY(Math.max(c.y, this.y));
 		}
 
 		/**
 		 * 各成分ごとに最小値を返す
-		 * @param {PixColorY} c
-		 * @returns {PixColorY}
+		 * @param {PixelColorY} c
+		 * @returns {PixelColorY}
 		 */
 		minColor(c) {
-			return new PixColorY(Math.min(c.y, this.y));
+			return new PixelColorY(Math.min(c.y, this.y));
 		}
 
 		/**
@@ -2561,7 +2561,7 @@
 
 		/**
 		 * アルファ値を変更した色を返す（輝度のみのためそのまま返す）
-		 * @returns {PixColorY}
+		 * @returns {PixelColorY}
 		 */
 		setBlendAlpha() {
 			return this;
@@ -2569,15 +2569,15 @@
 
 		/**
 		 * 指定色のアルファを適用（輝度のみのためそのまま返す）
-		 * @returns {PixColorY}
+		 * @returns {PixelColorY}
 		 */
 		exchangeColorAlpha() {
 			return this;
 		}
 
 		/**
-		 * 他のPixColorYと一致するか判定
-		 * @param {PixColorY} c
+		 * 他のPixelColorYと一致するか判定
+		 * @param {PixelColorY} c
 		 * @returns {boolean}
 		 */
 		equals(c) {
@@ -2597,13 +2597,13 @@
 	 * 3次元ベクトルクラス
 	 * 画像処理やノーマルマップでの方向ベクトル表現等に利用します
 	 *
-	 * @module PixFX
+	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
 	 */
 
 
-	class PixVector {
+	class PixelVector {
 		/**
 		 * 3次元ベクトルを生成
 		 * @param {number} x X成分
@@ -2618,11 +2618,11 @@
 
 		/**
 		 * クロス積（外積）を計算
-		 * @param {PixVector} tgt 相手ベクトル
-		 * @returns {PixVector} クロス積（this × tgt）
+		 * @param {PixelVector} tgt 相手ベクトル
+		 * @returns {PixelVector} クロス積（this × tgt）
 		 */
 		cross(tgt) {
-			return new PixVector(
+			return new PixelVector(
 				this.y * tgt.z - this.z * tgt.y,
 				this.z * tgt.x - this.x * tgt.z,
 				this.x * tgt.y - this.y * tgt.x
@@ -2631,30 +2631,30 @@
 
 		/**
 		 * 指定ターゲットへの方向ベクトルを計算
-		 * @param {PixVector} tgt ターゲットベクトル
-		 * @returns {PixVector} tgt - this
+		 * @param {PixelVector} tgt ターゲットベクトル
+		 * @returns {PixelVector} tgt - this
 		 */
 		getDirection(tgt) {
-			return new PixVector(tgt.x - this.x, tgt.y - this.y, tgt.z - this.z);
+			return new PixelVector(tgt.x - this.x, tgt.y - this.y, tgt.z - this.z);
 		}
 
 		/**
 		 * 正規化（単位ベクトル化）したベクトルを返す
-		 * @returns {PixVector}
+		 * @returns {PixelVector}
 		 */
 		normalize() {
 			let b = this.x * this.x + this.y * this.y + this.z * this.z;
 			b = Math.sqrt(1.0 / b);
-			return new PixVector(this.x * b, this.y * b, this.z * b);
+			return new PixelVector(this.x * b, this.y * b, this.z * b);
 		}
 
 		/**
 		 * 方向ベクトルからノーマルマップ用のRGBA色に変換
 		 * 右がX+,U+、下がY+,V+としたとき、RGB＝（+X, -Y, +Z）系とします。
-		 * @returns {PixColorRGBA}
+		 * @returns {PixelColorRGBA}
 		 */
 		getNormalMapColor() {
-			return new PixColorRGBA([
+			return new PixelColorRGBA([
 				Math.round((1.0 + this.x) * 127.5),
 				Math.round((1.0 - this.y) * 127.5),
 				Math.round((1.0 + this.z) * 127.5),
@@ -2665,15 +2665,15 @@
 		/**
 		 * ノーマルマップRGBA色から方向ベクトルを生成
 		 * 右がX+,U+、下がY+,V+としたとき、RGB＝（+X, -Y, +Z）系とします。
-		 * @param {PixColorRGBA} rgbcolor ノーマルマップ用RGBA色
-		 * @returns {PixVector}
-		 * @throws {Error} 引数がPixColorRGBAでない場合
+		 * @param {PixelColorRGBA} rgbcolor ノーマルマップ用RGBA色
+		 * @returns {PixelVector}
+		 * @throws {Error} 引数がPixelColorRGBAでない場合
 		 */
 		static createNormalVector(rgbcolor) {
-			if (!(rgbcolor instanceof PixColorRGBA)) {
-				throw "not PixColorRGBA";
+			if (!(rgbcolor instanceof PixelColorRGBA)) {
+				throw "not PixelColorRGBA";
 			}
-			return new PixVector(rgbcolor.r / 128.0 - 1.0, -(rgbcolor.g / 128.0) + 1.0, rgbcolor.b / 128.0 - 1.0);
+			return new PixelVector(rgbcolor.r / 128.0 - 1.0, -(rgbcolor.g / 128.0) + 1.0, rgbcolor.b / 128.0 - 1.0);
 		}
 	}
 
@@ -2681,17 +2681,17 @@
 	 * グレースケール画像データクラス（輝度Yのみで管理）
 	 * 1チャンネル（Y）の画像データ処理を提供
 	 *
-	 * @module PixFX
+	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
 	 */
 
 
-	class PixDataY extends PixData {
+	class PixelDataY extends PixelData {
 		/**
 		 * 初期化
 		 * @constructor
-		 * @param {ImageData|PixDataRGBA|PixDataY|number} [arg1] 元画像または幅
+		 * @param {ImageData|PixelDataRGBA|PixelDataY|number} [arg1] 元画像または幅
 		 * @param {number} [arg2] 高さ
 		 */
 		constructor(arg1, arg2) {
@@ -2706,10 +2706,10 @@
 
 		/**
 		 * この画像データのクローンを作成
-		 * @returns {PixDataY}
+		 * @returns {PixelDataY}
 		 */
 		clone() {
-			const x = new PixDataY(this.width, this.height);
+			const x = new PixelDataY(this.width, this.height);
 			this._copyData(x);
 			return x;
 		}
@@ -2728,18 +2728,18 @@
 		 * 範囲内座標のY値を取得
 		 * @param {number} x
 		 * @param {number} y
-		 * @returns {PixColorY}
+		 * @returns {PixelColorY}
 		 */
 		getPixelInside(x, y) {
 			const p = y * this.width + x;
-			return new PixColorY(this.data[p]);
+			return new PixelColorY(this.data[p]);
 		}
 
 		/**
 		 * 範囲内座標のY値を設定
 		 * @param {number} x
 		 * @param {number} y
-		 * @param {PixColorY} color
+		 * @param {PixelColorY} color
 		 */
 		setPixelInside(x, y, color) {
 			const p = y * this.width + x;
@@ -2750,7 +2750,7 @@
 		 * 任意座標(x, y)に画素値をセット（範囲外もラッピングモードに応じて書き込み）
 		 * @param {number} x
 		 * @param {number} y
-		 * @param {PixColorY} color
+		 * @param {PixelColorY} color
 		 */
 		setPixel(x, y, color) {
 			super.setPixel(x, y, color);
@@ -2760,7 +2760,7 @@
 		 * 実数座標(x, y)の補間色を返す
 		 * @param {number} x
 		 * @param {number} y
-		 * @returns {PixColorY}
+		 * @returns {PixelColorY}
 		 */
 		getColor(x, y) {
 			// @ts-ignore
@@ -2771,7 +2771,7 @@
 		 * UV座標（0～1）でテクスチャとして色取得
 		 * @param {number} u
 		 * @param {number} v
-		 * @returns {PixColorY}
+		 * @returns {PixelColorY}
 		 */
 		getColorUV(u, v) {
 			// @ts-ignore
@@ -2782,7 +2782,7 @@
 		 * 実数座標(x, y)に画素値をセット（切り捨て座標に書き込み）
 		 * @param {number} x
 		 * @param {number} y
-		 * @param {PixColorY} color
+		 * @param {PixelColorY} color
 		 */
 		setColor(x, y, color) {
 			super.setPixel(x, y, color);
@@ -2790,7 +2790,7 @@
 
 		/**
 		 * 全画素に対してコールバック関数を適用
-		 * @param {function(PixColorY, number, number, PixData):void} callback (color, x, y, this)
+		 * @param {function(PixelColorY, number, number, PixelData):void} callback (color, x, y, this)
 		 */
 		forEach(callback) {
 			super.forEach(callback);
@@ -2798,11 +2798,11 @@
 
 		/**
 		 * 各種画像データから本クラスへ変換して格納
-		 * @param {ImageData|PixDataRGBA|PixDataY} imagedata
+		 * @param {ImageData|PixelDataRGBA|PixelDataY} imagedata
 		 * @param {number} [n=0] RGBAのどのチャンネルか（0:R, 1:G, 2:B, 3:A）
 		 */
 		putImageData(imagedata, n) {
-			if (imagedata instanceof ImageData || imagedata instanceof PixDataRGBA) {
+			if (imagedata instanceof ImageData || imagedata instanceof PixelDataRGBA) {
 				this.setSize(imagedata.width, imagedata.height);
 				if (n === undefined) {
 					n = 0;
@@ -2812,7 +2812,7 @@
 					this.data[i] = imagedata.data[p + n];
 					p += 4;
 				}
-			} else if (imagedata instanceof PixDataY) {
+			} else if (imagedata instanceof PixelDataY) {
 				this.setSize(imagedata.width, imagedata.height);
 				this.data.set(imagedata.data);
 			} else {
@@ -2822,7 +2822,7 @@
 
 		/**
 		 * RGBA画像からR成分のみ取り込む
-		 * @param {ImageData|PixDataRGBA} imagedata
+		 * @param {ImageData|PixelDataRGBA} imagedata
 		 */
 		putImageDataR(imagedata) {
 			this.putImageData(imagedata, 0);
@@ -2830,7 +2830,7 @@
 
 		/**
 		 * RGBA画像からG成分のみ取り込む
-		 * @param {ImageData|PixDataRGBA} imagedata
+		 * @param {ImageData|PixelDataRGBA} imagedata
 		 */
 		putImageDataG(imagedata) {
 			this.putImageData(imagedata, 1);
@@ -2838,7 +2838,7 @@
 
 		/**
 		 * RGBA画像からB成分のみ取り込む
-		 * @param {ImageData|PixDataRGBA} imagedata
+		 * @param {ImageData|PixelDataRGBA} imagedata
 		 */
 		putImageDataB(imagedata) {
 			this.putImageData(imagedata, 2);
@@ -2846,7 +2846,7 @@
 
 		/**
 		 * RGBA画像からA成分のみ取り込む
-		 * @param {ImageData|PixDataRGBA} imagedata
+		 * @param {ImageData|PixelDataRGBA} imagedata
 		 */
 		putImageDataA(imagedata) {
 			this.putImageData(imagedata, 3);
@@ -2877,24 +2877,24 @@
 
 		/**
 		 * このグレースケール画像からノーマルマップを生成
-		 * @returns {PixDataRGBA}
+		 * @returns {PixelDataRGBA}
 		 * @throws {Error} ラッピングモードがINSIDEの場合は例外
 		 */
 		getNormalMap() {
-			if (this.getWrapMode() === PixData.MODE_WRAP.INSIDE) {
+			if (this.getWrapMode() === PixelData.MODE_WRAP.INSIDE) {
 				// 端の値を取得できないのでエラー
 				throw "not inside";
 			}
 
-			const output = new PixDataRGBA(this.width, this.height);
+			const output = new PixelDataRGBA(this.width, this.height);
 			let x, y;
 			for (y = 0; y < this.height; y++) {
 				for (x = 0; x < this.width; x++) {
-					const x1 = new PixVector(x - 1, y, this.getPixel(x - 1, y).getColor());
-					const x2 = new PixVector(x + 1, y, this.getPixel(x + 1, y).getColor());
+					const x1 = new PixelVector(x - 1, y, this.getPixel(x - 1, y).getColor());
+					const x2 = new PixelVector(x + 1, y, this.getPixel(x + 1, y).getColor());
 					const x3 = x1.getDirection(x2);
-					const y1 = new PixVector(x, y - 1, this.getPixel(x, y - 1).getColor());
-					const y2 = new PixVector(x, y + 1, this.getPixel(x, y + 1).getColor());
+					const y1 = new PixelVector(x, y - 1, this.getPixel(x, y - 1).getColor());
+					const y2 = new PixelVector(x, y + 1, this.getPixel(x, y + 1).getColor());
 					const y3 = y1.getDirection(y2);
 					const n = x3.cross(y3).normalize();
 					output.setPixelInside(x, y, n.getNormalMapColor());
@@ -2905,8 +2905,8 @@
 
 		/**
 		 * ノーマルマップを環境マッピングする（未実装）
-		 * @param {PixDataRGBA} texture
-		 * @returns {PixDataRGBA}
+		 * @param {PixelDataRGBA} texture
+		 * @returns {PixelDataRGBA}
 		 */
 		filterEnvironmentMapping(texture) {
 			return null;
@@ -2917,17 +2917,17 @@
 	 * RGBAカラー画像データクラス（4チャンネル画像データ）
 	 * 32bit整数(0xRRGGBBAA)の画素配列で管理。各種チャンネル処理や減色などもサポート
 	 *
-	 * @module PixFX
+	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
 	 */
 
 
-	class PixDataRGBA extends PixData {
+	class PixelDataRGBA extends PixelData {
 		/**
 		 * 初期化
 		 * @constructor
-		 * @param {ImageData|PixDataRGBA|PixDataY|number} [arg1] 画像データまたは幅
+		 * @param {ImageData|PixelDataRGBA|PixelDataY|number} [arg1] 画像データまたは幅
 		 * @param {number} [arg2] 高さ
 		 */
 		constructor(arg1, arg2) {
@@ -2942,10 +2942,10 @@
 
 		/**
 		 * この画像データのクローンを作成
-		 * @returns {PixDataRGBA}
+		 * @returns {PixelDataRGBA}
 		 */
 		clone() {
-			const x = new PixDataRGBA(this.width, this.height);
+			const x = new PixelDataRGBA(this.width, this.height);
 			this._copyData(x);
 			return x;
 		}
@@ -2964,11 +2964,11 @@
 		 * 範囲内座標のRGBA値を取得
 		 * @param {number} x
 		 * @param {number} y
-		 * @returns {PixColorRGBA}
+		 * @returns {PixelColorRGBA}
 		 */
 		getPixelInside(x, y) {
 			const p = (y * this.width + x) * 4;
-			const c = new PixColorRGBA([this.data[p], this.data[p + 1], this.data[p + 2], this.data[p + 3]]);
+			const c = new PixelColorRGBA([this.data[p], this.data[p + 1], this.data[p + 2], this.data[p + 3]]);
 			return c;
 		}
 
@@ -2976,7 +2976,7 @@
 		 * 範囲内座標のRGBA値を設定
 		 * @param {number} x
 		 * @param {number} y
-		 * @param {PixColorRGBA} color
+		 * @param {PixelColorRGBA} color
 		 */
 		setPixelInside(x, y, color) {
 			const p = (y * this.width + x) * 4;
@@ -2990,7 +2990,7 @@
 		 * 任意座標(x, y)に画素値をセット（範囲外もラッピングモードに応じて書き込み）
 		 * @param {number} x
 		 * @param {number} y
-		 * @param {PixColorRGBA} color
+		 * @param {PixelColorRGBA} color
 		 */
 		setPixel(x, y, color) {
 			super.setPixel(x, y, color);
@@ -3000,7 +3000,7 @@
 		 * 実数座標(x, y)の補間色を返す
 		 * @param {number} x
 		 * @param {number} y
-		 * @returns {PixColorRGBA}
+		 * @returns {PixelColorRGBA}
 		 */
 		getColor(x, y) {
 			// @ts-ignore
@@ -3011,7 +3011,7 @@
 		 * UV座標（0～1）でテクスチャとして色取得
 		 * @param {number} u
 		 * @param {number} v
-		 * @returns {PixColorRGBA}
+		 * @returns {PixelColorRGBA}
 		 */
 		getColorUV(u, v) {
 			// @ts-ignore
@@ -3022,7 +3022,7 @@
 		 * 実数座標(x, y)に画素値をセット（切り捨て座標に書き込み）
 		 * @param {number} x
 		 * @param {number} y
-		 * @param {PixColorRGBA} color
+		 * @param {PixelColorRGBA} color
 		 */
 		setColor(x, y, color) {
 			super.setPixel(x, y, color);
@@ -3030,7 +3030,7 @@
 
 		/**
 		 * 全画素に対してコールバック関数を適用
-		 * @param {function(PixColorRGBA, number, number, PixData):void} callback (color, x, y, this)
+		 * @param {function(PixelColorRGBA, number, number, PixelData):void} callback (color, x, y, this)
 		 */
 		forEach(callback) {
 			super.forEach(callback);
@@ -3038,11 +3038,11 @@
 
 		/**
 		 * グレースケール画像データを任意のチャンネルに反映
-		 * @param {PixDataY} imagedata
+		 * @param {PixelDataY} imagedata
 		 * @param {number} [n=0] 0:R, 1:G, 2:B, 3:A
 		 */
 		putDataY(imagedata, n) {
-			if (!(imagedata instanceof PixDataY)) {
+			if (!(imagedata instanceof PixelDataY)) {
 				throw "IllegalArgumentException";
 			}
 			this.setSize(imagedata.width, imagedata.height);
@@ -3057,35 +3057,35 @@
 			}
 		}
 
-		/** @param {PixDataY} imagedata */
+		/** @param {PixelDataY} imagedata */
 		putDataYToR(imagedata) {
 			this.putDataY(imagedata, 0);
 		}
 
-		/** @param {PixDataY} imagedata */
+		/** @param {PixelDataY} imagedata */
 		putDataYToG(imagedata) {
 			this.putDataY(imagedata, 1);
 		}
 
-		/** @param {PixDataY} imagedata */
+		/** @param {PixelDataY} imagedata */
 		putDataYToB(imagedata) {
 			this.putDataY(imagedata, 2);
 		}
 
-		/** @param {PixDataY} imagedata */
+		/** @param {PixelDataY} imagedata */
 		putDataYToA(imagedata) {
 			this.putDataY(imagedata, 3);
 		}
 
 		/**
 		 * 各種画像データからRGBA配列として格納
-		 * @param {ImageData|PixDataRGBA|PixDataY} imagedata
+		 * @param {ImageData|PixelDataRGBA|PixelDataY} imagedata
 		 */
 		putImageData(imagedata) {
-			if (imagedata instanceof ImageData || imagedata instanceof PixDataRGBA) {
+			if (imagedata instanceof ImageData || imagedata instanceof PixelDataRGBA) {
 				this.setSize(imagedata.width, imagedata.height);
 				this.data.set(imagedata.data);
-			} else if (imagedata instanceof PixDataY) {
+			} else if (imagedata instanceof PixelDataY) {
 				this.putImageData(imagedata.getImageData());
 			} else {
 				throw "IllegalArgumentException";
@@ -3112,7 +3112,7 @@
 		grayscale() {
 			this.forEach(function (color, x, y, data) {
 				const luminance = ~~color.luminance();
-				const newcolor = new PixColorRGBA([luminance, luminance, luminance, color.rgba[3]]);
+				const newcolor = new PixelColorRGBA([luminance, luminance, luminance, color.rgba[3]]);
 				data.setPixelInside(x, y, newcolor);
 			});
 		}
@@ -3141,7 +3141,7 @@
 		/**
 		 * メディアンカットによる減色用パレットを取得
 		 * @param {number} colors 色数
-		 * @returns {Array<PixColorRGBA>|null}
+		 * @returns {Array<PixelColorRGBA>|null}
 		 */
 		getPalletMedianCut(colors) {
 			if (this.getColorCount() <= colors) {
@@ -3162,7 +3162,7 @@
 			// 色から指定した解像度のrrggbb値を返す
 
 			/**
-			 * @param {PixColorRGBA} color
+			 * @param {PixelColorRGBA} color
 			 * @returns {number}
 			 * @private
 			 */
@@ -3342,7 +3342,7 @@
 				b = b < 0 ? 0 : b > 255 ? 255 : b;
 
 				//COLORREF 型で代入
-				pallet[i] = new PixColorRGBA([r, g, b, 255]);
+				pallet[i] = new PixelColorRGBA([r, g, b, 255]);
 			}
 
 			return pallet;
@@ -3350,11 +3350,11 @@
 
 		/**
 		 * 使用されている色のパレット（最大256色まで）
-		 * @returns {Array<PixColorRGBA>}
+		 * @returns {Array<PixelColorRGBA>}
 		 */
 		getPallet() {
 			/**
-			 * @type {Array<PixColorRGBA>}
+			 * @type {Array<PixelColorRGBA>}
 			 */
 			const pallet = [];
 			const rrggbb_array = new Uint32Array(256);
@@ -3380,7 +3380,7 @@
 		/**
 		 * グレースケール階調パレットを取得
 		 * @param {number} colors 階調数(2~256)
-		 * @returns {Array<PixColorRGBA>}
+		 * @returns {Array<PixelColorRGBA>}
 		 */
 		getPalletGrayscale(colors) {
 			const n = colors < 2 ? 2 : colors > 256 ? 256 : colors;
@@ -3391,7 +3391,7 @@
 			for (i = 0; i < n; i++) {
 				let y = Math.round(col);
 				y = y < 0 ? 0 : y > 255 ? 255 : y;
-				pallet[i] = new PixColorRGBA([y, y, y, 255]);
+				pallet[i] = new PixelColorRGBA([y, y, y, 255]);
 				col += diff;
 			}
 			return pallet;
@@ -3399,20 +3399,20 @@
 
 		/**
 		 * パレットを使った単純減色
-		 * @param {Array<PixColorRGBA>} palettes
+		 * @param {Array<PixelColorRGBA>} palettes
 		 */
 		quantizationSimple(palettes) {
 			this.forEach(function (thiscolor, x, y, data) {
-				const palletcolor = thiscolor.searchColor(palettes, PixColor.NORM_MODE.EUGRID);
+				const palletcolor = thiscolor.searchColor(palettes, PixelColor.NORM_MODE.EUGRID);
 				data.setPixelInside(x, y, palletcolor.c1.color.exchangeColorAlpha(thiscolor));
 			});
 		}
 
 		/**
 		 * パレット＋組織的ディザ法による減色
-		 * @param {Array<PixColorRGBA>} palettes
-		 * @param {PixDataRGBAQuantization} orderPattern
-		 * @param {number} normType PixColor.NORM_MOD
+		 * @param {Array<PixelColorRGBA>} palettes
+		 * @param {PixelDataRGBAQuantization} orderPattern
+		 * @param {number} normType PixelColor.NORM_MOD
 		 */
 		quantizationOrdered(palettes, orderPattern, normType) {
 			this.forEach(function (thiscolor, x, y, data) {
@@ -3447,8 +3447,8 @@
 
 		/**
 		 * パレット＋誤差拡散法による減色
-		 * @param {Array<PixColorRGBA>} palettes
-		 * @param {PixDataRGBAQuantization} diffusionPattern
+		 * @param {Array<PixelColorRGBA>} palettes
+		 * @param {PixelDataRGBAQuantization} diffusionPattern
 		 */
 		quantizationDiffusion(palettes, diffusionPattern) {
 			// 誤差拡散するにあたって、0未満や255より大きな値を使用するため
@@ -3493,14 +3493,14 @@
 			// 選択処理
 			this.forEach(function (thiscolor, x, y, data) {
 				point = y * data.width + x;
-				const diffcolor = new PixColorRGBA([color_r[point], color_g[point], color_b[point], 255]);
+				const diffcolor = new PixelColorRGBA([color_r[point], color_g[point], color_b[point], 255]);
 				// 最も近い色を探して
-				const palletcolor = diffcolor.searchColor(palettes, PixColor.NORM_MODE.EUGRID);
+				const palletcolor = diffcolor.searchColor(palettes, PixelColor.NORM_MODE.EUGRID);
 				/**
-				 * @type {PixColorRGBA}
+				 * @type {PixelColorRGBA}
 				 */
 				// @ts-ignore
-				const c1color = /** @type {PixColorRGBA} */ palletcolor.c1.color;
+				const c1color = /** @type {PixelColorRGBA} */ palletcolor.c1.color;
 				// 値を設定する
 				data.setPixelInside(x, y, c1color.exchangeColorAlpha(thiscolor));
 				// 右端の近くは誤差分散させられないので拡散しない
@@ -3542,27 +3542,27 @@
 		/**
 		 * 組織的ディザ法による減色
 		 * @param {number} colorcount
-		 * @param {number} [normType] デフォルトはPixColor.NORM_MODE.EUGRID
+		 * @param {number} [normType] デフォルトはPixelColor.NORM_MODE.EUGRID
 		 */
 		filterQuantizationOrdered(colorcount, normType) {
 			if (normType === undefined) {
-				normType = PixColor.NORM_MODE.EUGRID;
+				normType = PixelColor.NORM_MODE.EUGRID;
 			}
 			const count = this.getColorCount();
 			if (count > colorcount) {
 				const pallet = this.getPalletMedianCut(colorcount);
-				this.quantizationOrdered(pallet, PixDataRGBA.quantization.orderPattern.patternBayer, normType);
+				this.quantizationOrdered(pallet, PixelDataRGBA.quantization.orderPattern.patternBayer, normType);
 			}
 		}
 
 		/**
 		 * 誤差拡散法による減色
 		 * @param {number} colorcount
-		 * @param {PixDataRGBAQuantization} [diffusionPattern]
+		 * @param {PixelDataRGBAQuantization} [diffusionPattern]
 		 */
 		filterQuantizationDiffusion(colorcount, diffusionPattern) {
 			if (diffusionPattern === undefined) {
-				diffusionPattern = PixDataRGBA.quantization.diffusionPattern.patternFloydSteinberg;
+				diffusionPattern = PixelDataRGBA.quantization.diffusionPattern.patternFloydSteinberg;
 			}
 			const count = this.getColorCount();
 			if (count > colorcount) {
@@ -3574,7 +3574,7 @@
 
 	/**
 	 * パターン定義
-	 * @typedef {Object} PixDataRGBAQuantization
+	 * @typedef {Object} PixelDataRGBAQuantization
 	 * @property {number} width パターンの幅
 	 * @property {number} height パターンの高さ
 	 * @property {number} [center] パターンの中心位置
@@ -3585,7 +3585,7 @@
 	/**
 	 * パターン定義用の静的定数
 	 */
-	PixDataRGBA.quantization = {
+	PixelDataRGBA.quantization = {
 		/**
 		 * 誤差拡散法用パターン
 		 */
@@ -3637,24 +3637,24 @@
 	};
 
 	/**
-	 * PixFX
+	 * PixelProcessing
 	 *
-	 * @module PixFX
+	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
 	 */
 
 
-	const PixfX = {
-		PixDataRGBA: PixDataRGBA,
-		PixColorRGBA: PixColorRGBA,
-		PixDataY: PixDataY,
-		PixColorY: PixColorY,
-		MODE_WRAP: PixData.MODE_WRAP,
-		MODE_IP: PixData.MODE_IP,
-		MODE_BLEND: PixData.MODE_BLEND
+	const PixelProcessing = {
+		PixelDataRGBA: PixelDataRGBA,
+		PixelColorRGBA: PixelColorRGBA,
+		PixelDataY: PixelDataY,
+		PixelColorY: PixelColorY,
+		MODE_WRAP: PixelData.MODE_WRAP,
+		MODE_IP: PixelData.MODE_IP,
+		MODE_BLEND: PixelData.MODE_BLEND
 	};
 
-	return PixfX;
+	return PixelProcessing;
 
 }));

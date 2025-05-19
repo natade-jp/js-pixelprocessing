@@ -1,10 +1,10 @@
-# PixFX
+# PixelProcessing
 
 ![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)
 
 ## 概要
 
-PixFX は、高度な画像処理のための JavaScript ライブラリです。
+PixelProcessing は、高度な画像処理のための JavaScript ライブラリです。
 ピクセル操作・ブレンド・減色・フィルタ・補間処理など、Canvas/Web向けに設計されています。
 
 ## 特長

@@ -14,7 +14,7 @@ const batch = function () {
 	for (let i = 0; i < text.length; i++) {
 		const line = text[i];
 		if (/"Documentation"/.test(line)) {
-			text[i] = line.replace(/"Documentation"/, '"PixFX"');
+			text[i] = line.replace(/"Documentation"/, '"PixelProcessing"');
 			break;
 		}
 	}
@@ -25,6 +25,5 @@ batch();
 
 NTFile.exec('npx jsdoc -R "./README.md" -c "./scripts/jsdoc.config.json"');
 
-NTFile.copy("./build/esm/index.js", "./docs/demo/libs/PixFX.js");
-NTFile.copy("./build/esm/index.min.js", "./docs/demo/libs/PixFX.min.js");
-NTFile.copy("./build/esm/index.min.d.ts", "./docs/demo/libs/PixFX.min.d.ts");
+NTFile.copy("./build/esm/index.min.js", "./docs/demo/libs/PixelProcessing.min.js");
+NTFile.copy("./build/esm/index.min.d.ts", "./docs/demo/libs/PixelProcessing.min.d.ts");

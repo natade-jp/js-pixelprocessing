@@ -12,7 +12,7 @@
 		"dictionaries": ["jsdoc", "closure"]
 	},
 	"templates": {
-		"referenceTitle": "PixFX",
+		"referenceTitle": "PixelProcessing",
 		"cleverLinks": false,
 		"monospaceLinks": false,
 		"default": {
@@ -29,7 +29,7 @@
 	"docdash": {
 		"menu": {
 			"Github repo": {
-				"href": "https://github.com/natade-jp/js-pixfx",
+				"href": "https://github.com/natade-jp/js-pixelprocessing",
 				"class": "menu-item"
 			}
 		},

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>color/PixelColorY.js - PixelProcessing</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <script src="scripts/commonNav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">color/PixelColorY.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>﻿/**
+ * 輝度（Y成分・グレースケール）のみを扱う色クラス
+ *
+ * @module PixelProcessing
+ * @author natade (https://github.com/natade-jp)
+ * @license MIT
+ */
+
+import PixelColor from "./PixelColor.js";
+
+export default class PixelColorY extends PixelColor {
+	/**
+	 * 輝度値（Y成分）で初期化
+	 * @param {number} color 輝度（0.0～255.0）
+	 */
+	constructor(color) {
+		super();
+		// ディープコピー
+		this.y = color;
+	}
+
+	/**
+	 * 輝度値を返す
+	 * @returns {number}
+	 */
+	getColor() {
+		return this.y;
+	}
+
+	/**
+	 * この色のコピーを返す
+	 * @returns {PixelColorY}
+	 */
+	clone() {
+		return new PixelColorY(this.y);
+	}
+
+	/**
+	 * 輝度値0.0の色を返す
+	 * @returns {PixelColorY}
+	 */
+	zero() {
+		return new PixelColorY(0.0);
+	}
+
+	/**
+	 * 輝度値1.0の色を返す
+	 * @returns {PixelColorY}
+	 */
+	one() {
+		return new PixelColorY(1.0);
+	}
+
+	/**
+	 * 輝度値に加算
+	 * @param {number} x
+	 * @returns {PixelColorY}
+	 */
+	add(x) {
+		return new PixelColorY(this.y + x);
+	}
+
+	/**
+	 * 輝度値から減算
+	 * @param {number} x
+	 * @returns {PixelColorY}
+	 */
+	sub(x) {
+		return new PixelColorY(this.y - x);
+	}
+
+	/**
+	 * 輝度値に乗算
+	 * @param {number} x
+	 * @returns {PixelColorY}
+	 */
+	mul(x) {
+		return new PixelColorY(this.y * x);
+	}
+
+	/**
+	 * 輝度値を除算
+	 * @param {number} x
+	 * @returns {PixelColorY}
+	 */
+	div(x) {
+		return new PixelColorY(this.y / x);
+	}
+
+	/**
+	 * 輝度値にexp()を適用
+	 * @returns {PixelColorY}
+	 */
+	exp() {
+		return new PixelColorY(Math.exp(this.y));
+	}
+
+	/**
+	 * 輝度値にlog()を適用
+	 * @returns {PixelColorY}
+	 */
+	log() {
+		return new PixelColorY(Math.log(this.y));
+	}
+
+	/**
+	 * 輝度値をbaseのべき乗にする
+	 * @param {number} base
+	 * @returns {PixelColorY}
+	 */
+	pow(base) {
+		return new PixelColorY(Math.pow(base, this.y));
+	}
+
+	/**
+	 * 任意の底の対数
+	 * @param {number} base
+	 * @returns {PixelColorY}
+	 */
+	baselog(base) {
+		return new PixelColorY(Math.log(this.y) / Math.log(base));
+	}
+
+	/**
+	 * テーブル参照による変換
+	 * @param {Array&lt;number>} table
+	 * @returns {PixelColorY}
+	 */
+	table(table) {
+		return new PixelColorY(table[Math.floor(this.y)]);
+	}
+
+	/**
+	 * ランダムな輝度値（0～255）
+	 * @returns {PixelColorY}
+	 */
+	random() {
+		return new PixelColorY(Math.random() * 256);
+	}
+
+	/**
+	 * 輝度値（明るさ）を返す
+	 * @returns {number}
+	 */
+	luminance() {
+		return this.y;
+	}
+
+	/**
+	 * 他の輝度色と加算
+	 * @param {PixelColorY} c
+	 * @returns {PixelColorY}
+	 */
+	addColor(c) {
+		return new PixelColorY(this.y + c.y);
+	}
+
+	/**
+	 * 他の輝度色と減算
+	 * @param {PixelColorY} c
+	 * @returns {PixelColorY}
+	 */
+	subColor(c) {
+		return new PixelColorY(this.y - c.y);
+	}
+
+	/**
+	 * 他の輝度色と乗算
+	 * @param {PixelColorY} c
+	 * @returns {PixelColorY}
+	 */
+	mulColor(c) {
+		return new PixelColorY(this.y * c.y);
+	}
+
+	/**
+	 * 他の輝度色と除算
+	 * @param {PixelColorY} c
+	 * @returns {PixelColorY}
+	 */
+	divColor(c) {
+		return new PixelColorY(this.y / c.y);
+	}
+
+	/**
+	 * 各成分ごとに最大値を返す
+	 * @param {PixelColorY} c
+	 * @returns {PixelColorY}
+	 */
+	maxColor(c) {
+		return new PixelColorY(Math.max(c.y, this.y));
+	}
+
+	/**
+	 * 各成分ごとに最小値を返す
+	 * @param {PixelColorY} c
+	 * @returns {PixelColorY}
+	 */
+	minColor(c) {
+		return new PixelColorY(Math.min(c.y, this.y));
+	}
+
+	/**
+	 * 輝度値のノルム（絶対値）を返す
+	 * @returns {number}
+	 */
+	norm() {
+		return Math.abs(this.y);
+	}
+
+	/**
+	 * 輝度値のノルム（絶対値, 高速版）
+	 * @returns {number}
+	 */
+	normFast() {
+		return Math.abs(this.y);
+	}
+
+	/**
+	 * アルファ値（常に1.0）を返す
+	 * @returns {number}
+	 */
+	getBlendAlpha() {
+		return 1.0;
+	}
+
+	/**
+	 * アルファ値を変更した色を返す（輝度のみのためそのまま返す）
+	 * @returns {PixelColorY}
+	 */
+	setBlendAlpha() {
+		return this;
+	}
+
+	/**
+	 * 指定色のアルファを適用（輝度のみのためそのまま返す）
+	 * @returns {PixelColorY}
+	 */
+	exchangeColorAlpha() {
+		return this;
+	}
+
+	/**
+	 * 他のPixelColorYと一致するか判定
+	 * @param {PixelColorY} c
+	 * @returns {boolean}
+	 */
+	equals(c) {
+		return this.y === c.y;
+	}
+
+	/**
+	 * 輝度値の文字列表現
+	 * @returns {string}
+	 */
+	toString() {
+		return "color(" + this.y + ")";
+	}
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.4</a> using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
+</html>
