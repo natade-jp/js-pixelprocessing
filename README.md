@@ -8,6 +8,12 @@
 PixelProcessing は、高度な画像処理のための JavaScript ライブラリです。
 ピクセル操作・ブレンド・減色・フィルタ・補間処理など、Canvas/Web向けに設計されています。
 
+以下を確認ください。
+
+- [Github Pages](https://natade-jp.github.io/js-pixelprocessing/)
+- [ARCHITECTURE.md](https://natade-jp.github.io/js-pixelprocessing/tutorial-ARCHITECTURE.html)
+- [使用例](https://natade-jp.github.io/js-pixelprocessing/tutorial-getting-started.html)
+
 ## 特長
 
 - RGBA/グレースケール両対応の画像データ操作

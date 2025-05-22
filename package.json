@@ -1,6 +1,6 @@
 {
 	"name": "pixelprocessing",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "A JavaScript library for advanced image processing, including pixel manipulation, blending, color quantization, filtering, and interpolation, designed for use with Canvas and modern web applications.",
 	"keywords": [
 		"image-processing",
