@@ -1,6 +1,7 @@
 # PixelProcessing
 
-![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)
+[![npm version](https://badge.fury.io/js/pixelprocessing.svg)](https://badge.fury.io/js/pixelprocessing)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ## 概要
 
