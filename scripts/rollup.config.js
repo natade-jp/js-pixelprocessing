@@ -33,14 +33,14 @@ const createData = function (moduleName, input_name, output_name, format, isUgli
 };
 
 const name = "PixelProcessing";
-const input = "./src/index.js";
+const input = "./src/PixelProcessing.js";
 const data = [];
 
-data.push(createData(name, input, "./build/umd/index.js", "umd", false));
-data.push(createData(name, input, "./build/umd/index.min.js", "umd", true));
-data.push(createData(name, input, "./build/cjs/index.js", "cjs", false));
-data.push(createData(name, input, "./build/cjs/index.min.js", "cjs", true));
-data.push(createData(name, input, "./build/esm/index.js", "esm", false));
-data.push(createData(name, input, "./build/esm/index.min.js", "esm", true));
+data.push(createData(name, input, "./build/umd/PixelProcessing.js", "umd", false));
+data.push(createData(name, input, "./build/umd/PixelProcessing.min.js", "umd", true));
+data.push(createData(name, input, "./build/cjs/PixelProcessing.js", "cjs", false));
+data.push(createData(name, input, "./build/cjs/PixelProcessing.min.js", "cjs", true));
+data.push(createData(name, input, "./build/esm/PixelProcessing.js", "esm", false));
+data.push(createData(name, input, "./build/esm/PixelProcessing.min.js", "esm", true));
 
 export default data;

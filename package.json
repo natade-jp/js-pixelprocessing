@@ -15,15 +15,15 @@
 		"url": "git+https://github.com/natade-jp/js-pixelprocessing.git"
 	},
 	"license": "MIT",
-	"source": "./src/index.js",
-	"main": "./build/esm/index.js",
-	"types": "./build/type/index.d.ts",
+	"source": "./src/PixelProcessing.js",
+	"main": "./build/esm/PixelProcessing.js",
+	"types": "./build/type/PixelProcessing.d.ts",
 	"exports": {
 		".": {
-			"browser": "./build/umd/index.js",
-			"umd": "./build/umd/index.js",
-			"import": "./build/esm/index.js",
-			"require": "./build/cjs/index.js"
+			"browser": "./build/umd/PixelProcessing.js",
+			"umd": "./build/umd/PixelProcessing.js",
+			"import": "./build/esm/PixelProcessing.js",
+			"require": "./build/cjs/PixelProcessing.js"
 		}
 	},
 	"type": "module",

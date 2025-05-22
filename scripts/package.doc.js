@@ -25,5 +25,5 @@ batch();
 
 NTFile.exec('npx jsdoc -R "./README.md" -c "./scripts/jsdoc.config.json"');
 
-NTFile.copy("./build/esm/index.min.js", "./docs/demo/libs/PixelProcessing.min.js");
-NTFile.copy("./build/esm/index.min.d.ts", "./docs/demo/libs/PixelProcessing.min.d.ts");
+NTFile.copy("./build/esm/PixelProcessing.min.js", "./docs/demo/libs/PixelProcessing.min.js");
+NTFile.copy("./build/esm/PixelProcessing.min.d.ts", "./docs/demo/libs/PixelProcessing.min.d.ts");
