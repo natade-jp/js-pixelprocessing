@@ -47,21 +47,41 @@
         <article>
             <pre class="prettyprint source linenums"><code>﻿/**
  * 画像処理用のFIR（畳み込み）フィルタ行列クラス
- * ブラーやシャープ、ガウシアンなど各種フィルタの行列生成・操作に使用
+ * ブラーやシャープ、ガウシアンなど各種フィルタの行列生成・操作に使用します。
  *
+ * @class
  * @module PixelProcessing
  * @author natade (https://github.com/natade-jp)
  * @license MIT
+ * @example
+ * const matrix = new PixelFIRMatrix([[0, -1, 0], [-1, 5, -1], [0, -1, 0]]);
+ * const sharpen = matrix.clone().normalize();
  */
-
 export default class PixelFIRMatrix {
 	/**
 	 * 2次元配列で初期化
 	 * @param {Array&lt;Array&lt;number>>} matrix フィルタ行列（[y][x]の2次元配列）
 	 */
 	constructor(matrix) {
+		/**
+		 * 行列の高さ（行数）
+		 * @type {number}
+		 * @public
+		 */
 		this.height = matrix.length;
+
+		/**
+		 * 行列の幅（列数）
+		 * @type {number}
+		 * @public
+		 */
 		this.width = matrix[0].length;
+
+		/**
+		 * フィルタ行列本体（[y][x] の2次元配列）
+		 * @type {Array&lt;Array&lt;number>>}
+		 * @public
+		 */
 		this.matrix = [];
 		let i;
 		for (i = 0; i &lt; matrix.length; i++) {

@@ -1,17 +1,21 @@
-﻿/**
- * グレースケール画像データクラス（輝度Yのみで管理）
- * 1チャンネル（Y）の画像データ処理を提供
- *
- * @module PixelProcessing
- * @author natade (https://github.com/natade-jp)
- * @license MIT
- */
-
-import PixelColorY from "../color/PixelColorY.js";
+﻿import PixelColorY from "../color/PixelColorY.js";
 import PixelData from "./PixelData.js";
 import PixelDataRGBA from "./PixelDataRGBA.js";
 import PixelVector from "../color/PixelVector.js";
 
+/**
+ * グレースケール画像データクラス（輝度Yのみで管理）
+ * 1チャンネル（Y）の画像データ処理・変換・ノーマルマップ生成などを提供します。
+ *
+ * @class
+ * @extends PixelData
+ * @module PixelProcessing
+ * @author natade (https://github.com/natade-jp)
+ * @license MIT
+ * @example
+ * const img = new PixelDataY(256, 256);
+ * img.setPixel(0, 0, new PixelColorY(128));
+ */
 export default class PixelDataY extends PixelData {
 	/**
 	 * 初期化

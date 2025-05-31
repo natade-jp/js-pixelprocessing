@@ -81,7 +81,13 @@
 <li>減色・ディザ・誤差拡散など</li>
 <li>ノーマルマップ生成</li>
 <li>Canvas API との連携</li>
-</ul></article>
+</ul>
+<h2>利用例</h2>
+<pre class="prettyprint source lang-js"><code>import PixelProcessing from &quot;pixelprocessing&quot;;
+const data = new PixelProcessing.DataRGBA(canvas.getImageData());
+data.filterGaussian(5);
+canvas.putImageData(data.getImageData());
+</code></pre></article>
     </section>
 
 

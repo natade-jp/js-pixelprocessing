@@ -23,3 +23,12 @@ PixelProcessing は、高度な画像処理のための JavaScript ライブラ�
 - 減色・ディザ・誤差拡散など
 - ノーマルマップ生成
 - Canvas API との連携
+
+## 利用例
+
+```js
+import PixelProcessing from "pixelprocessing";
+const data = new PixelProcessing.DataRGBA(canvas.getImageData());
+data.filterGaussian(5);
+canvas.putImageData(data.getImageData());
+```

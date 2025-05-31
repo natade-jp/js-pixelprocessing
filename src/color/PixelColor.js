@@ -1,11 +1,17 @@
 ﻿/**
- * 画像処理用の色を表す基底クラス
+ * 画像処理用の色を表す抽象基底クラス
+ * サブクラス（PixelColorRGBA, PixelColorYなど）で各成分を定義し、色演算・変換処理のインターフェースを提供します。
  *
+ * @class
+ * @abstract
  * @module PixelProcessing
  * @author natade (https://github.com/natade-jp)
  * @license MIT
+ *
+ * @example
+ * // 継承して実装
+ * class MyColor extends PixelColor { ... }
  */
-
 export default class PixelColor {
 	/**
 	 * PixelColor 抽象クラスのコンストラクタ

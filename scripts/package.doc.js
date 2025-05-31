@@ -25,5 +25,8 @@ batch();
 
 NTFile.exec('npx jsdoc -R "./README.md" -c "./scripts/jsdoc.config.json"');
 
-NTFile.copy("./build/esm/PixelProcessing.min.js", "./docs/demo/libs/PixelProcessing.min.js");
-NTFile.copy("./build/esm/PixelProcessing.min.d.ts", "./docs/demo/libs/PixelProcessing.min.d.ts");
+const files = ["PixelProcessing.min.js", "PixelProcessing.min.d.ts"];
+
+files.forEach((file) => {
+	NTFile.copy(`./build/esm/${file}`, `./docs/demo/libs/${file}`);
+});

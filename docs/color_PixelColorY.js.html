@@ -45,16 +45,21 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>﻿/**
+            <pre class="prettyprint source linenums"><code>﻿import PixelColor from "./PixelColor.js";
+
+/**
  * 輝度（Y成分・グレースケール）のみを扱う色クラス
+ * グレースケール画像の画素色表現や、単成分での画像処理に利用します。
  *
+ * @class
+ * @extends PixelColor
  * @module PixelProcessing
  * @author natade (https://github.com/natade-jp)
  * @license MIT
+ * @example
+ * const gray = new PixelColorY(128);
+ * const lighter = gray.add(32); // 輝度値を加算
  */
-
-import PixelColor from "./PixelColor.js";
-
 export default class PixelColorY extends PixelColor {
 	/**
 	 * 輝度値（Y成分）で初期化

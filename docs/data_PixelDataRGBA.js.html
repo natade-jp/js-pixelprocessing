@@ -45,20 +45,24 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>﻿/**
- * RGBAカラー画像データクラス（4チャンネル画像データ）
- * 32bit整数(0xRRGGBBAA)の画素配列で管理。各種チャンネル処理や減色などもサポート
- *
- * @module PixelProcessing
- * @author natade (https://github.com/natade-jp)
- * @license MIT
- */
-
-import PixelColor from "../color/PixelColor.js";
+            <pre class="prettyprint source linenums"><code>﻿import PixelColor from "../color/PixelColor.js";
 import PixelColorRGBA from "../color/PixelColorRGBA.js";
 import PixelData from "./PixelData.js";
 import PixelDataY from "./PixelDataY.js";
 
+/**
+ * RGBAカラー画像データクラス（4チャンネル画像データ）
+ * 32bit整数(0xRRGGBBAA)または配列で画素情報を管理し、各種チャンネル処理や減色、画像変換をサポートします。
+ *
+ * @class
+ * @extends PixelData
+ * @module PixelProcessing
+ * @author natade (https://github.com/natade-jp)
+ * @license MIT
+ * @example
+ * const img = new PixelDataRGBA(320, 240);
+ * img.setPixel(0, 0, new PixelColorRGBA([255, 0, 0, 255]));
+ */
 export default class PixelDataRGBA extends PixelData {
 	/**
 	 * 初期化
@@ -248,7 +252,7 @@ export default class PixelDataRGBA extends PixelData {
 	grayscale() {
 		this.forEach(function (color, x, y, data) {
 			const luminance = ~~color.luminance();
-			const newcolor = new PixelColorRGBA([luminance, luminance, luminance, color.rgba[3]]);
+			const newcolor = new PixelColorRGBA([luminance, luminance, luminance, color.a]);
 			data.setPixelInside(x, y, newcolor);
 		});
 	}

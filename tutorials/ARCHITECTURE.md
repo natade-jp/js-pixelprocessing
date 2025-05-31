@@ -136,7 +136,7 @@ PixelProcessing
 
 ```js
 import PixelProcessing from "pixelprocessing";
-const data = new PixelProcessing.PixelDataRGBA(canvas.getImageData());
+const data = new PixelProcessing.DataRGBA(canvas.getImageData());
 data.filterGaussian(5);
 canvas.putImageData(data.getImageData());
 ```

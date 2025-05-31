@@ -84,7 +84,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line23">line 23</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line28">line 28</a>
     </li></ul></dd>
     
 
@@ -274,7 +274,7 @@
 <h4 class="name" id="blend"><span class="type-signature"></span>blend<span class="type-signature"> :PixelBlend</span></h4>
 
 
-<p class="summary"><p>ブレンドモード</p>.</p>
+<p class="summary"><p>書き込み時のブレンドモード管理オブジェクト</p>.</p>
 
 
 
@@ -282,13 +282,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>ブレンドモード</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>書き込み時のブレンドモード管理オブジェクト</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line52">line 52</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line67">line 67</a>
     </li></ul></dd>
     
 
@@ -328,7 +328,7 @@
 
 
 <div class="description usertext">
-    <p>ブレンドモード</p>
+    <p>書き込み時のブレンドモード管理オブジェクト</p>
 </div>
 
 
@@ -354,7 +354,12 @@
 <h4 class="name" id="data"><span class="type-signature"></span>data<span class="type-signature"> :Uint8ClampedArray|Float32Array</span></h4>
 
 
-<p class="summary"><p>画素データ</p>.</p>
+<p class="summary"><p>画素データ本体
+派生クラスで具体的型が決まる</p>
+<ul>
+<li>RGBA Uint8ClampedArray 各画素4チャンネル（R,G,B,A）ずつ格納。長さは width * height * 4</li>
+<li>Y Float32Array グレースケール（Y成分）画素データ本体 各画素1チャンネルずつ格納。長さは width * height</li>
+</ul>.</p>
 
 
 
@@ -362,13 +367,18 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>画素データ</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>画素データ本体
+派生クラスで具体的型が決まる</p>
+<ul>
+<li>RGBA Uint8ClampedArray 各画素4チャンネル（R,G,B,A）ずつ格納。長さは width * height * 4</li>
+<li>Y Float32Array グレースケール（Y成分）画素データ本体 各画素1チャンネルずつ格納。長さは width * height</li>
+</ul></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line46">line 46</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line60">line 60</a>
     </li></ul></dd>
     
 
@@ -408,7 +418,12 @@
 
 
 <div class="description usertext">
-    <p>画素データ</p>
+    <p>画素データ本体
+派生クラスで具体的型が決まる</p>
+<ul>
+<li>RGBA Uint8ClampedArray 各画素4チャンネル（R,G,B,A）ずつ格納。長さは width * height * 4</li>
+<li>Y Float32Array グレースケール（Y成分）画素データ本体 各画素1チャンネルずつ格納。長さは width * height</li>
+</ul>
 </div>
 
 
@@ -451,7 +466,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line40">line 40</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line48">line 48</a>
     </li></ul></dd>
     
 
@@ -517,7 +532,7 @@
 <h4 class="name" id="height"><span class="type-signature"></span>height<span class="type-signature"> :number</span></h4>
 
 
-<p class="summary"><p>画像高さ</p>.</p>
+<p class="summary"><p>画像高さ（ピクセル数）</p>.</p>
 
 
 
@@ -525,7 +540,167 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>画像高さ</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>画像高さ（ピクセル数）</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line41">line 41</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>画像高さ（ピクセル数）</p>
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="ip"><span class="type-signature"></span>ip<span class="type-signature"> :PixelInterpolation</span></h4>
+
+
+<p class="summary"><p>補間方式管理</p>.</p>
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>補間方式管理</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line81">line 81</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>補間方式管理</p>
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">PixelInterpolation</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="width"><span class="type-signature"></span>width<span class="type-signature"> :number</span></h4>
+
+
+<p class="summary"><p>画像幅（ピクセル数）</p>.</p>
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>画像幅（ピクセル数）</p></li></ul></dd>
     
 
     
@@ -571,167 +746,7 @@
 
 
 <div class="description usertext">
-    <p>画像高さ</p>
-</div>
-
-
-
-    <h5 class="h5-types">Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">number</span>
-
-
-
-        </li>
-    </ul>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="ip"><span class="type-signature"></span>ip<span class="type-signature"> :PixelInterpolation</span></h4>
-
-
-<p class="summary"><p>補間方式</p>.</p>
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>補間方式</p></li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line64">line 64</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    <p>補間方式</p>
-</div>
-
-
-
-    <h5 class="h5-types">Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">PixelInterpolation</span>
-
-
-
-        </li>
-    </ul>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="width"><span class="type-signature"></span>width<span class="type-signature"> :number</span></h4>
-
-
-<p class="summary"><p>画像幅</p>.</p>
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>画像幅</p></li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line28">line 28</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    <p>画像幅</p>
+    <p>画像幅（ピクセル数）</p>
 </div>
 
 
@@ -757,7 +772,7 @@
 <h4 class="name" id="wrap"><span class="type-signature"></span>wrap<span class="type-signature"> :PixelWrap</span></h4>
 
 
-<p class="summary"><p>範囲外アクセスの処理ラッパー</p>.</p>
+<p class="summary"><p>範囲外アクセスのラッピング方式管理</p>.</p>
 
 
 
@@ -765,13 +780,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>範囲外アクセスの処理ラッパー</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>範囲外アクセスのラッピング方式管理</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line58">line 58</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line74">line 74</a>
     </li></ul></dd>
     
 
@@ -811,7 +826,7 @@
 
 
 <div class="description usertext">
-    <p>範囲外アクセスの処理ラッパー</p>
+    <p>範囲外アクセスのラッピング方式管理</p>
 </div>
 
 
@@ -851,7 +866,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line594">line 594</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line612">line 612</a>
     </li></ul></dd>
     
 
@@ -931,7 +946,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line588">line 588</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line606">line 606</a>
     </li></ul></dd>
     
 
@@ -1011,7 +1026,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line582">line 582</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line600">line 600</a>
     </li></ul></dd>
     
 
@@ -1101,7 +1116,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line111">line 111</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line128">line 128</a>
     </li></ul></dd>
     
 
@@ -1238,7 +1253,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line181">line 181</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line198">line 198</a>
     </li></ul></dd>
     
 
@@ -1325,7 +1340,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line124">line 124</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line141">line 141</a>
     </li></ul></dd>
     
 
@@ -1431,7 +1446,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line358">line 358</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line375">line 375</a>
     </li></ul></dd>
     
 
@@ -1570,7 +1585,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line392">line 392</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line409">line 409</a>
     </li></ul></dd>
     
 
@@ -1763,7 +1778,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line444">line 444</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line462">line 462</a>
     </li></ul></dd>
     
 
@@ -1956,7 +1971,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line484">line 484</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line502">line 502</a>
     </li></ul></dd>
     
 
@@ -2121,7 +2136,7 @@ PixelDataY    データの上には、PixelDataY    のみ書き込み可能</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line291">line 291</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line308">line 308</a>
     </li></ul></dd>
     
 
@@ -2536,7 +2551,7 @@ PixelDataY    データの上には、PixelDataY    のみ書き込み可能</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line562">line 562</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line580">line 580</a>
     </li></ul></dd>
     
 
@@ -2697,7 +2712,7 @@ PixelDataY    データの上には、PixelDataY    のみ書き込み可能</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line527">line 527</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line545">line 545</a>
     </li></ul></dd>
     
 
@@ -2834,7 +2849,7 @@ PixelDataY    データの上には、PixelDataY    のみ書き込み可能</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line539">line 539</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line557">line 557</a>
     </li></ul></dd>
     
 
@@ -2971,7 +2986,7 @@ PixelDataY    データの上には、PixelDataY    のみ書き込み可能</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line518">line 518</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line536">line 536</a>
     </li></ul></dd>
     
 
@@ -3108,7 +3123,7 @@ PixelDataY    データの上には、PixelDataY    のみ書き込み可能</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line572">line 572</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line590">line 590</a>
     </li></ul></dd>
     
 
@@ -3269,7 +3284,7 @@ PixelDataY    データの上には、PixelDataY    のみ書き込み可能</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line552">line 552</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line570">line 570</a>
     </li></ul></dd>
     
 
@@ -3430,7 +3445,7 @@ PixelDataY    データの上には、PixelDataY    のみ書き込み可能</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line344">line 344</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line361">line 361</a>
     </li></ul></dd>
     
 
@@ -3567,7 +3582,7 @@ PixelDataY    データの上には、PixelDataY    のみ書き込み可能</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line174">line 174</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line191">line 191</a>
     </li></ul></dd>
     
 
@@ -3677,7 +3692,7 @@ PixelDataY    データの上には、PixelDataY    のみ書き込み可能</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line251">line 251</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line268">line 268</a>
     </li></ul></dd>
     
 
@@ -3857,7 +3872,7 @@ PixelDataY    データの上には、PixelDataY    のみ書き込み可能</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line262">line 262</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line279">line 279</a>
     </li></ul></dd>
     
 
@@ -4037,7 +4052,7 @@ PixelDataY    データの上には、PixelDataY    のみ書き込み可能</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line158">line 158</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line175">line 175</a>
     </li></ul></dd>
     
 
@@ -4147,7 +4162,7 @@ PixelDataY    データの上には、PixelDataY    のみ書き込み可能</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line216">line 216</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line233">line 233</a>
     </li></ul></dd>
     
 
@@ -4329,7 +4344,7 @@ x, y が整数かつ画像の範囲内を保証している場合に使用可能
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line195">line 195</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line212">line 212</a>
     </li></ul></dd>
     
 
@@ -4509,7 +4524,7 @@ x, y が整数かつ画像の範囲内を保証している場合に使用可能
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line142">line 142</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line159">line 159</a>
     </li></ul></dd>
     
 
@@ -4619,7 +4634,7 @@ x, y が整数かつ画像の範囲内を保証している場合に使用可能
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line88">line 88</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line105">line 105</a>
     </li></ul></dd>
     
 
@@ -4759,7 +4774,7 @@ x, y が整数かつ画像の範囲内を保証している場合に使用可能
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line166">line 166</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line183">line 183</a>
     </li></ul></dd>
     
 
@@ -4896,7 +4911,7 @@ x, y が整数かつ画像の範囲内を保証している場合に使用可能
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line273">line 273</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line290">line 290</a>
     </li></ul></dd>
     
 
@@ -5081,7 +5096,7 @@ x, y が整数かつ画像の範囲内を保証している場合に使用可能
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line150">line 150</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line167">line 167</a>
     </li></ul></dd>
     
 
@@ -5218,7 +5233,7 @@ x, y が整数かつ画像の範囲内を保証している場合に使用可能
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line231">line 231</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line248">line 248</a>
     </li></ul></dd>
     
 
@@ -5405,7 +5420,7 @@ x, y が整数かつ画像の範囲内を保証している場合に使用可能
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line207">line 207</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line224">line 224</a>
     </li></ul></dd>
     
 
@@ -5590,7 +5605,7 @@ x, y が整数かつ画像の範囲内を保証している場合に使用可能
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line97">line 97</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line114">line 114</a>
     </li></ul></dd>
     
 
@@ -5751,7 +5766,7 @@ x, y が整数かつ画像の範囲内を保証している場合に使用可能
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line134">line 134</a>
+        <a href="data_PixelData.js.html">data/PixelData.js</a>, <a href="data_PixelData.js.html#line151">line 151</a>
     </li></ul></dd>
     
 

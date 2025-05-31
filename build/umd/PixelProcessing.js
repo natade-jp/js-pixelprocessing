@@ -5,13 +5,19 @@
 })(this, (function () { 'use strict';
 
 	/**
-	 * 画像処理用の色を表す基底クラス
+	 * 画像処理用の色を表す抽象基底クラス
+	 * サブクラス（PixelColorRGBA, PixelColorYなど）で各成分を定義し、色演算・変換処理のインターフェースを提供します。
 	 *
+	 * @class
+	 * @abstract
 	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
+	 *
+	 * @example
+	 * // 継承して実装
+	 * class MyColor extends PixelColor { ... }
 	 */
-
 	class PixelColor {
 		/**
 		 * PixelColor 抽象クラスのコンストラクタ
@@ -332,15 +338,6 @@
 
 	/**
 	 * 画像処理用のブレンドモードを管理するクラス
-	 *
-	 * @module PixelProcessing
-	 * @author natade (https://github.com/natade-jp)
-	 * @license MIT
-	 */
-
-
-	/**
-	 * 内部で使用されるブレンド関数群
 	 * @private
 	 */
 	const BlendFunctions = {
@@ -440,6 +437,16 @@
 
 	/**
 	 * 画像処理用ブレンドモードを提供するクラス
+	 * 各種合成方法（上書き・アルファ・加算・減算・乗算等）を管理し、指定モードで色合成を行うユーティリティです。
+	 *
+	 * @class
+	 * @module PixelProcessing
+	 * @author natade (https://github.com/natade-jp)
+	 * @license MIT
+	 *
+	 * @example
+	 * const blend = new PixelBlend(PixelBlend.MODE.ALPHA);
+	 * const result = blend.blend(color1, color2, 0.5);
 	 */
 	class PixelBlend {
 		/**
@@ -447,7 +454,14 @@
 		 * @param {string} mode ブレンドモード（PixelBlend.MODE のいずれか）
 		 */
 		constructor(mode) {
+			/**
+			 * 現在設定されているブレンド関数
+			 * PixelBlend.MODEに応じた合成処理（引数: (PixelColor, PixelColor, number): PixelColor）
+			 * @type {function(PixelColor, PixelColor, number): PixelColor}
+			 * @private
+			 */
 			this.blendfunc = BlendFunctions.brendNone;
+
 			if (arguments.length === 1) {
 				this.setBlendMode(mode);
 			}
@@ -466,6 +480,12 @@
 		 * @param {string} mode ブレンドモード（PixelBlend.MODE のいずれか）
 		 */
 		setBlendMode(mode) {
+			/**
+			 * 現在のブレンドモード
+			 * PixelBlend.MODE で定義されるモード（"NONE", "ALPHA", "ADD"など）
+			 * @type {string}
+			 * @public
+			 */
 			this.blendmode = mode;
 			if (mode === PixelBlend.MODE.NONE) {
 				this.blendfunc = BlendFunctions.brendNone;
@@ -1146,21 +1166,41 @@
 
 	/**
 	 * 画像処理用のFIR（畳み込み）フィルタ行列クラス
-	 * ブラーやシャープ、ガウシアンなど各種フィルタの行列生成・操作に使用
+	 * ブラーやシャープ、ガウシアンなど各種フィルタの行列生成・操作に使用します。
 	 *
+	 * @class
 	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
+	 * @example
+	 * const matrix = new PixelFIRMatrix([[0, -1, 0], [-1, 5, -1], [0, -1, 0]]);
+	 * const sharpen = matrix.clone().normalize();
 	 */
-
 	class PixelFIRMatrix {
 		/**
 		 * 2次元配列で初期化
 		 * @param {Array<Array<number>>} matrix フィルタ行列（[y][x]の2次元配列）
 		 */
 		constructor(matrix) {
+			/**
+			 * 行列の高さ（行数）
+			 * @type {number}
+			 * @public
+			 */
 			this.height = matrix.length;
+
+			/**
+			 * 行列の幅（列数）
+			 * @type {number}
+			 * @public
+			 */
 			this.width = matrix[0].length;
+
+			/**
+			 * フィルタ行列本体（[y][x] の2次元配列）
+			 * @type {Array<Array<number>>}
+			 * @public
+			 */
 			this.matrix = [];
 			let i;
 			for (i = 0; i < matrix.length; i++) {
@@ -1379,14 +1419,18 @@
 
 	/**
 	 * 画像データ基底クラス（ラスタ画像データ抽象基盤）
-	 * RGBAやY（グレースケール）画像データを扱う基底クラス
+	 * RGBAやY（グレースケール）画像データを扱う抽象基底クラスです。
+	 * 派生クラスで具体的なデータ管理・画像処理を実装します。
 	 *
+	 * @class
 	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
+	 * @example
+	 * // 派生クラスを利用
+	 * const img = new PixelDataRGBA(320, 240);
+	 * img.setPixel(0, 0, new PixelColorRGBA([255, 0, 0, 255]));
 	 */
-
-
 	class PixelData {
 		/**
 		 * 画像データクラス
@@ -1396,44 +1440,56 @@
 		 */
 		constructor(arg1, arg2) {
 			/**
-			 * 画像幅
+			 * 画像幅（ピクセル数）
 			 * @type {number}
+			 * @public
 			 */
 			this.width = 1;
 
 			/**
-			 * 画像高さ
+			 * 画像高さ（ピクセル数）
 			 * @type {number}
+			 * @public
 			 */
 			this.height = 1;
 
 			/**
 			 * 書き込み時グローバルアルファ（0.0～1.0）
 			 * @type {number}
+			 * @public
 			 */
 			this.globalAlpha = 1.0;
 
 			/**
-			 * 画素データ
+			 * 画素データ本体
+			 * 派生クラスで具体的型が決まる
+			 *
+			 * - RGBA Uint8ClampedArray 各画素4チャンネル（R,G,B,A）ずつ格納。長さは width * height * 4
+			 * - Y Float32Array グレースケール（Y成分）画素データ本体 各画素1チャンネルずつ格納。長さは width * height
+			 *
 			 * @type {Uint8ClampedArray|Float32Array}
+			 * @public
 			 */
 			this.data = null;
 
 			/**
-			 * ブレンドモード
+			 * 書き込み時のブレンドモード管理オブジェクト
 			 * @type {PixelBlend}
+			 * @public
 			 */
 			this.blend = new PixelBlend(PixelBlend.MODE.NONE);
 
 			/**
-			 * 範囲外アクセスの処理ラッパー
+			 * 範囲外アクセスのラッピング方式管理
 			 * @type {PixelWrap}
+			 * @public
 			 */
 			this.wrap = new PixelWrap(PixelWrap.MODE.INSIDE, this.width, this.height);
 
 			/**
-			 * 補間方式
+			 * 補間方式管理
 			 * @type {PixelInterpolation}
+			 * @public
 			 */
 			this.ip = new PixelInterpolation(PixelInterpolation.MODE.NEAREST_NEIGHBOR);
 
@@ -1797,7 +1853,8 @@
 								continue;
 							}
 							const newfilter =
-								exptable[Math.floor(tgtcolor.normColor(thiscolor, PixelColor.NORM_MODE.EUGRID))] * m[my][mx];
+								exptable[Math.floor(tgtcolor.normColor(thiscolor, PixelColor.NORM_MODE.EUGRID))] *
+								m[my][mx];
 							newcolor = newcolor.addColor(tgtcolor.mul(newfilter));
 							sumfilter += newfilter;
 						}
@@ -1967,13 +2024,17 @@
 
 	/**
 	 * RGBA色（Red, Green, Blue, Alpha）を扱う色クラス
+	 * 各成分を0～255の配列として保持し、色演算やアルファ合成などの画像処理をサポートします。
 	 *
+	 * @class
+	 * @extends PixelColor
 	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
+	 * @example
+	 * const color = new PixelColorRGBA([255, 128, 64, 200]);
+	 * const brighter = color.add(10); // 全成分に+10
 	 */
-
-
 	class PixelColorRGBA extends PixelColor {
 		/**
 		 * RGBA色を生成
@@ -1982,6 +2043,13 @@
 		constructor(color) {
 			super();
 			// ディープコピー
+
+			/**
+			 * RGBA各成分を格納する配列
+			 * 形式: [R, G, B, A]（各0～255, floatも許容）
+			 * @type {number[]}
+			 * @private
+			 */
 			this.rgba = [color[0], color[1], color[2], color[3]];
 		}
 
@@ -2336,13 +2404,17 @@
 
 	/**
 	 * 輝度（Y成分・グレースケール）のみを扱う色クラス
+	 * グレースケール画像の画素色表現や、単成分での画像処理に利用します。
 	 *
+	 * @class
+	 * @extends PixelColor
 	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
+	 * @example
+	 * const gray = new PixelColorY(128);
+	 * const lighter = gray.add(32); // 輝度値を加算
 	 */
-
-
 	class PixelColorY extends PixelColor {
 		/**
 		 * 輝度値（Y成分）で初期化
@@ -2595,14 +2667,16 @@
 
 	/**
 	 * 3次元ベクトルクラス
-	 * 画像処理やノーマルマップでの方向ベクトル表現等に利用します
+	 * 画像処理やノーマルマップでの方向ベクトル表現等に利用します。
 	 *
+	 * @class
 	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
+	 * @example
+	 * const v = new PixelVector(1, 2, 3);
+	 * const cross = v.cross(new PixelVector(0, 0, 1));
 	 */
-
-
 	class PixelVector {
 		/**
 		 * 3次元ベクトルを生成
@@ -2611,8 +2685,25 @@
 		 * @param {number} z Z成分
 		 */
 		constructor(x, y, z) {
+			/**
+			 * X成分
+			 * @type {number}
+			 * @public
+			 */
 			this.x = x;
+
+			/**
+			 * Y成分
+			 * @type {number}
+			 * @public
+			 */
 			this.y = y;
+
+			/**
+			 * Z成分
+			 * @type {number}
+			 * @public
+			 */
 			this.z = z;
 		}
 
@@ -2679,14 +2770,17 @@
 
 	/**
 	 * グレースケール画像データクラス（輝度Yのみで管理）
-	 * 1チャンネル（Y）の画像データ処理を提供
+	 * 1チャンネル（Y）の画像データ処理・変換・ノーマルマップ生成などを提供します。
 	 *
+	 * @class
+	 * @extends PixelData
 	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
+	 * @example
+	 * const img = new PixelDataY(256, 256);
+	 * img.setPixel(0, 0, new PixelColorY(128));
 	 */
-
-
 	class PixelDataY extends PixelData {
 		/**
 		 * 初期化
@@ -2915,14 +3009,17 @@
 
 	/**
 	 * RGBAカラー画像データクラス（4チャンネル画像データ）
-	 * 32bit整数(0xRRGGBBAA)の画素配列で管理。各種チャンネル処理や減色などもサポート
+	 * 32bit整数(0xRRGGBBAA)または配列で画素情報を管理し、各種チャンネル処理や減色、画像変換をサポートします。
 	 *
+	 * @class
+	 * @extends PixelData
 	 * @module PixelProcessing
 	 * @author natade (https://github.com/natade-jp)
 	 * @license MIT
+	 * @example
+	 * const img = new PixelDataRGBA(320, 240);
+	 * img.setPixel(0, 0, new PixelColorRGBA([255, 0, 0, 255]));
 	 */
-
-
 	class PixelDataRGBA extends PixelData {
 		/**
 		 * 初期化
@@ -3112,7 +3209,7 @@
 		grayscale() {
 			this.forEach(function (color, x, y, data) {
 				const luminance = ~~color.luminance();
-				const newcolor = new PixelColorRGBA([luminance, luminance, luminance, color.rgba[3]]);
+				const newcolor = new PixelColorRGBA([luminance, luminance, luminance, color.a]);
 				data.setPixelInside(x, y, newcolor);
 			});
 		}
@@ -3645,11 +3742,27 @@
 	 */
 
 
+	/**
+	 * PixelProcessing モジュールのメイン名前空間
+	 * 各種画像データクラスや色クラス、フィルタ行列クラス、および定数群をまとめた静的ユーティリティオブジェクト。
+	 *
+	 * @namespace PixelProcessing
+	 *
+	 * @example
+	 * // 例: 新規画像生成
+	 * const img = new PixelProcessing.DataRGBA(256, 256);
+	 * const gray = new PixelProcessing.DataY(128, 128);
+	 *
+	 * // 例: 色クラス利用
+	 * const color = new PixelProcessing.ColorRGBA([255, 0, 0, 255]);
+	 * const y = new PixelProcessing.ColorY(200);
+	 */
 	const PixelProcessing = {
-		PixelDataRGBA: PixelDataRGBA,
-		PixelColorRGBA: PixelColorRGBA,
-		PixelDataY: PixelDataY,
-		PixelColorY: PixelColorY,
+		DataRGBA: PixelDataRGBA,
+		ColorRGBA: PixelColorRGBA,
+		DataY: PixelDataY,
+		ColorY: PixelColorY,
+		FIRMatrix: PixelFIRMatrix,
 		MODE_WRAP: PixelData.MODE_WRAP,
 		MODE_IP: PixelData.MODE_IP,
 		MODE_BLEND: PixelData.MODE_BLEND

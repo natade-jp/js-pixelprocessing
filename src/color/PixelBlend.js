@@ -1,15 +1,7 @@
-﻿/**
- * 画像処理用のブレンドモードを管理するクラス
- *
- * @module PixelProcessing
- * @author natade (https://github.com/natade-jp)
- * @license MIT
- */
-
-import PixelColor from "./PixelColor.js";
+﻿import PixelColor from "./PixelColor.js";
 
 /**
- * 内部で使用されるブレンド関数群
+ * 画像処理用のブレンドモードを管理するクラス
  * @private
  */
 const BlendFunctions = {
@@ -109,6 +101,16 @@ const BlendFunctions = {
 
 /**
  * 画像処理用ブレンドモードを提供するクラス
+ * 各種合成方法（上書き・アルファ・加算・減算・乗算等）を管理し、指定モードで色合成を行うユーティリティです。
+ *
+ * @class
+ * @module PixelProcessing
+ * @author natade (https://github.com/natade-jp)
+ * @license MIT
+ *
+ * @example
+ * const blend = new PixelBlend(PixelBlend.MODE.ALPHA);
+ * const result = blend.blend(color1, color2, 0.5);
  */
 export default class PixelBlend {
 	/**
@@ -116,7 +118,14 @@ export default class PixelBlend {
 	 * @param {string} mode ブレンドモード（PixelBlend.MODE のいずれか）
 	 */
 	constructor(mode) {
+		/**
+		 * 現在設定されているブレンド関数
+		 * PixelBlend.MODEに応じた合成処理（引数: (PixelColor, PixelColor, number): PixelColor）
+		 * @type {function(PixelColor, PixelColor, number): PixelColor}
+		 * @private
+		 */
 		this.blendfunc = BlendFunctions.brendNone;
+
 		if (arguments.length === 1) {
 			this.setBlendMode(mode);
 		}
@@ -135,6 +144,12 @@ export default class PixelBlend {
 	 * @param {string} mode ブレンドモード（PixelBlend.MODE のいずれか）
 	 */
 	setBlendMode(mode) {
+		/**
+		 * 現在のブレンドモード
+		 * PixelBlend.MODE で定義されるモード（"NONE", "ALPHA", "ADD"など）
+		 * @type {string}
+		 * @public
+		 */
 		this.blendmode = mode;
 		if (mode === PixelBlend.MODE.NONE) {
 			this.blendfunc = BlendFunctions.brendNone;

@@ -25,10 +25,11 @@ export type PixelDataRGBAQuantization = {
     pattern: number[][];
 };
 declare namespace PixelProcessing {
-    export { PixelDataRGBA };
-    export { PixelColorRGBA };
-    export { PixelDataY };
-    export { PixelColorY };
+    export { PixelDataRGBA as DataRGBA };
+    export { PixelColorRGBA as ColorRGBA };
+    export { PixelDataY as DataY };
+    export { PixelColorY as ColorY };
+    export { PixelFIRMatrix as FIRMatrix };
     import MODE_WRAP = PixelData.MODE_WRAP;
     export { MODE_WRAP };
     import MODE_IP = PixelData.MODE_IP;
@@ -38,11 +39,16 @@ declare namespace PixelProcessing {
 }
 /**
  * RGBAカラー画像データクラス（4チャンネル画像データ）
- * 32bit整数(0xRRGGBBAA)の画素配列で管理。各種チャンネル処理や減色などもサポート
+ * 32bit整数(0xRRGGBBAA)または配列で画素情報を管理し、各種チャンネル処理や減色、画像変換をサポートします。
  *
+ * @class
+ * @extends PixelData
  * @module PixelProcessing
  * @author natade (https://github.com/natade-jp)
  * @license MIT
+ * @example
+ * const img = new PixelDataRGBA(320, 240);
+ * img.setPixel(0, 0, new PixelColorRGBA([255, 0, 0, 255]));
  */
 declare class PixelDataRGBA extends PixelData {
     /**
@@ -225,10 +231,16 @@ declare namespace PixelDataRGBA {
 }
 /**
  * RGBA色（Red, Green, Blue, Alpha）を扱う色クラス
+ * 各成分を0～255の配列として保持し、色演算やアルファ合成などの画像処理をサポートします。
  *
+ * @class
+ * @extends PixelColor
  * @module PixelProcessing
  * @author natade (https://github.com/natade-jp)
  * @license MIT
+ * @example
+ * const color = new PixelColorRGBA([255, 128, 64, 200]);
+ * const brighter = color.add(10); // 全成分に+10
  */
 declare class PixelColorRGBA extends PixelColor {
     /**
@@ -236,7 +248,13 @@ declare class PixelColorRGBA extends PixelColor {
      * @param {Array<number>} color [R, G, B, A]（0-255, 0-255, 0-255, 0-255）
      */
     constructor(color: Array<number>);
-    rgba: number[];
+    /**
+     * RGBA各成分を格納する配列
+     * 形式: [R, G, B, A]（各0～255, floatも許容）
+     * @type {number[]}
+     * @private
+     */
+    private rgba;
     /** @returns {number} 赤成分 */
     get r(): number;
     /** @returns {number} 緑成分 */
@@ -405,11 +423,16 @@ declare class PixelColorRGBA extends PixelColor {
 }
 /**
  * グレースケール画像データクラス（輝度Yのみで管理）
- * 1チャンネル（Y）の画像データ処理を提供
+ * 1チャンネル（Y）の画像データ処理・変換・ノーマルマップ生成などを提供します。
  *
+ * @class
+ * @extends PixelData
  * @module PixelProcessing
  * @author natade (https://github.com/natade-jp)
  * @license MIT
+ * @example
+ * const img = new PixelDataY(256, 256);
+ * img.setPixel(0, 0, new PixelColorY(128));
  */
 declare class PixelDataY extends PixelData {
     /**
@@ -517,10 +540,16 @@ declare class PixelDataY extends PixelData {
 }
 /**
  * 輝度（Y成分・グレースケール）のみを扱う色クラス
+ * グレースケール画像の画素色表現や、単成分での画像処理に利用します。
  *
+ * @class
+ * @extends PixelColor
  * @module PixelProcessing
  * @author natade (https://github.com/natade-jp)
  * @license MIT
+ * @example
+ * const gray = new PixelColorY(128);
+ * const lighter = gray.add(32); // 輝度値を加算
  */
 declare class PixelColorY extends PixelColor {
     /**
@@ -670,12 +699,125 @@ declare class PixelColorY extends PixelColor {
     equals(c: PixelColorY): boolean;
 }
 /**
- * 画像データ基底クラス（ラスタ画像データ抽象基盤）
- * RGBAやY（グレースケール）画像データを扱う基底クラス
+ * 画像処理用のFIR（畳み込み）フィルタ行列クラス
+ * ブラーやシャープ、ガウシアンなど各種フィルタの行列生成・操作に使用します。
  *
+ * @class
  * @module PixelProcessing
  * @author natade (https://github.com/natade-jp)
  * @license MIT
+ * @example
+ * const matrix = new PixelFIRMatrix([[0, -1, 0], [-1, 5, -1], [0, -1, 0]]);
+ * const sharpen = matrix.clone().normalize();
+ */
+declare class PixelFIRMatrix {
+    /**
+     * Laplacianフィルタ行列を生成
+     * @static
+     * @returns {PixelFIRMatrix}
+     */
+    static makeLaplacianFilter(): PixelFIRMatrix;
+    /**
+     * シャープフィルタ行列を生成
+     * @static
+     * @param {number} power シャープ強度
+     * @returns {PixelFIRMatrix}
+     */
+    static makeSharpenFilter(power: number): PixelFIRMatrix;
+    /**
+     * ボックス（平均化）ブラー行列を生成
+     * @static
+     * @param {number} width 行列幅
+     * @param {number} height 行列高さ
+     * @returns {PixelFIRMatrix}
+     */
+    static makeBlur(width: number, height: number): PixelFIRMatrix;
+    /**
+     * ガウシアンフィルタ行列を生成
+     * @static
+     * @param {number} width 行列幅
+     * @param {number} height 行列高さ
+     * @param {number} [sd=1.0] 標準偏差
+     * @returns {PixelFIRMatrix}
+     */
+    static makeGaussianFilter(width: number, height: number, sd?: number): PixelFIRMatrix;
+    /**
+     * 円形の畳み込み行列を生成
+     * @static
+     * @param {number} r 直径（行列の一辺）
+     * @returns {PixelFIRMatrix}
+     */
+    static makeCircle(r: number): PixelFIRMatrix;
+    /**
+     * 2次元配列で初期化
+     * @param {Array<Array<number>>} matrix フィルタ行列（[y][x]の2次元配列）
+     */
+    constructor(matrix: Array<Array<number>>);
+    /**
+     * 行列の高さ（行数）
+     * @type {number}
+     * @public
+     */
+    public height: number;
+    /**
+     * 行列の幅（列数）
+     * @type {number}
+     * @public
+     */
+    public width: number;
+    /**
+     * フィルタ行列本体（[y][x] の2次元配列）
+     * @type {Array<Array<number>>}
+     * @public
+     */
+    public matrix: Array<Array<number>>;
+    /**
+     * このフィルタ行列の複製を作成
+     * @returns {PixelFIRMatrix}
+     */
+    clone(): PixelFIRMatrix;
+    /**
+     * フィルタ行列の周囲（エッジ）を時計回りに回転
+     * @param {number} val 回転量（正の整数で右回り）
+     * @returns {PixelFIRMatrix} 回転後の新しい行列
+     */
+    rotateEdge(val: number): PixelFIRMatrix;
+    /**
+     * 全要素を指定値で乗算
+     * @param {number} val 乗算値
+     * @returns {PixelFIRMatrix}
+     */
+    mul(val: number): PixelFIRMatrix;
+    /**
+     * 全要素の合計値を返す
+     * @returns {number}
+     */
+    sum(): number;
+    /**
+     * 合計値で正規化（全体の合計が1になるようスケーリング）
+     * @returns {PixelFIRMatrix}
+     */
+    normalize(): PixelFIRMatrix;
+    /**
+     * フィルタの中心に指定値を加算
+     * @param {number} val
+     * @returns {PixelFIRMatrix}
+     */
+    addCenter(val: number): PixelFIRMatrix;
+}
+/**
+ * 画像データ基底クラス（ラスタ画像データ抽象基盤）
+ * RGBAやY（グレースケール）画像データを扱う抽象基底クラスです。
+ * 派生クラスで具体的なデータ管理・画像処理を実装します。
+ *
+ * @class
+ * @module PixelProcessing
+ * @author natade (https://github.com/natade-jp)
+ * @license MIT
+ * @example
+ * // 派生クラスを利用
+ * const img = new PixelDataRGBA(320, 240);
+ * img.setPixel(0, 0, new PixelColorRGBA([255, 0, 0, 255]));
  */
 declare class PixelData {
     /**
@@ -686,40 +828,52 @@ declare class PixelData {
      */
     constructor(arg1?: ImageData | PixelData | number, arg2?: number, ...args: any[]);
     /**
-     * 画像幅
+     * 画像幅（ピクセル数）
      * @type {number}
+     * @public
      */
-    width: number;
+    public width: number;
     /**
-     * 画像高さ
+     * 画像高さ（ピクセル数）
      * @type {number}
+     * @public
      */
-    height: number;
+    public height: number;
     /**
      * 書き込み時グローバルアルファ（0.0～1.0）
      * @type {number}
+     * @public
      */
-    globalAlpha: number;
+    public globalAlpha: number;
     /**
-     * 画素データ
+     * 画素データ本体
+     * 派生クラスで具体的型が決まる
+     *
+     * - RGBA Uint8ClampedArray 各画素4チャンネル（R,G,B,A）ずつ格納。長さは width * height * 4
+     * - Y Float32Array グレースケール（Y成分）画素データ本体 各画素1チャンネルずつ格納。長さは width * height
+     *
      * @type {Uint8ClampedArray|Float32Array}
+     * @public
      */
-    data: Uint8ClampedArray | Float32Array;
+    public data: Uint8ClampedArray | Float32Array;
     /**
-     * ブレンドモード
+     * 書き込み時のブレンドモード管理オブジェクト
      * @type {PixelBlend}
+     * @public
      */
-    blend: PixelBlend;
+    public blend: PixelBlend;
     /**
-     * 範囲外アクセスの処理ラッパー
+     * 範囲外アクセスのラッピング方式管理
      * @type {PixelWrap}
+     * @public
      */
-    wrap: PixelWrap;
+    public wrap: PixelWrap;
     /**
-     * 補間方式
+     * 補間方式管理
      * @type {PixelInterpolation}
+     * @public
      */
-    ip: PixelInterpolation;
+    public ip: PixelInterpolation;
     /**
      * 画像データをセット
      * @param {ImageData|PixelData} imagedata
@@ -953,11 +1107,18 @@ declare namespace PixelData {
     type MODE_BLEND = string;
 }
 /**
- * 画像処理用の色を表す基底クラス
+ * 画像処理用の色を表す抽象基底クラス
+ * サブクラス（PixelColorRGBA, PixelColorYなど）で各成分を定義し、色演算・変換処理のインターフェースを提供します。
  *
+ * @class
+ * @abstract
  * @module PixelProcessing
  * @author natade (https://github.com/natade-jp)
  * @license MIT
+ *
+ * @example
+ * // 継承して実装
+ * class MyColor extends PixelColor { ... }
  */
 declare class PixelColor {
     /**
@@ -1156,6 +1317,16 @@ declare namespace PixelColor {
 }
 /**
  * 画像処理用ブレンドモードを提供するクラス
+ * 各種合成方法（上書き・アルファ・加算・減算・乗算等）を管理し、指定モードで色合成を行うユーティリティです。
+ *
+ * @class
+ * @module PixelProcessing
+ * @author natade (https://github.com/natade-jp)
+ * @license MIT
+ *
+ * @example
+ * const blend = new PixelBlend(PixelBlend.MODE.ALPHA);
+ * const result = blend.blend(color1, color2, 0.5);
  */
 declare class PixelBlend {
     /**
@@ -1163,7 +1334,13 @@ declare class PixelBlend {
      * @param {string} mode ブレンドモード（PixelBlend.MODE のいずれか）
      */
     constructor(mode: string, ...args: any[]);
-    blendfunc: (x: PixelColor, y: PixelColor, alpha: number) => PixelColor;
+    /**
+     * 現在設定されているブレンド関数
+     * PixelBlend.MODEに応じた合成処理（引数: (PixelColor, PixelColor, number): PixelColor）
+     * @type {function(PixelColor, PixelColor, number): PixelColor}
+     * @private
+     */
+    private blendfunc;
     /**
      * 現在のブレンドモードを複製したインスタンスを返す
      * @returns {PixelBlend}
@@ -1174,7 +1351,13 @@ declare class PixelBlend {
      * @param {string} mode ブレンドモード（PixelBlend.MODE のいずれか）
      */
     setBlendMode(mode: string): void;
-    blendmode: string;
+    /**
+     * 現在のブレンドモード
+     * PixelBlend.MODE で定義されるモード（"NONE", "ALPHA", "ADD"など）
+     * @type {string}
+     * @public
+     */
+    public blendmode: string;
     /**
      * 2つの色を指定したブレンドモードで合成する
      * @param {PixelColor} color1 元の色
@@ -1293,94 +1476,6 @@ declare namespace PixelInterpolation {
      * *
      */
     type MODE = string;
-}
-/**
- * 画像処理用のFIR（畳み込み）フィルタ行列クラス
- * ブラーやシャープ、ガウシアンなど各種フィルタの行列生成・操作に使用
- *
- * @module PixelProcessing
- * @author natade (https://github.com/natade-jp)
- * @license MIT
- */
-declare class PixelFIRMatrix {
-    /**
-     * Laplacianフィルタ行列を生成
-     * @static
-     * @returns {PixelFIRMatrix}
-     */
-    static makeLaplacianFilter(): PixelFIRMatrix;
-    /**
-     * シャープフィルタ行列を生成
-     * @static
-     * @param {number} power シャープ強度
-     * @returns {PixelFIRMatrix}
-     */
-    static makeSharpenFilter(power: number): PixelFIRMatrix;
-    /**
-     * ボックス（平均化）ブラー行列を生成
-     * @static
-     * @param {number} width 行列幅
-     * @param {number} height 行列高さ
-     * @returns {PixelFIRMatrix}
-     */
-    static makeBlur(width: number, height: number): PixelFIRMatrix;
-    /**
-     * ガウシアンフィルタ行列を生成
-     * @static
-     * @param {number} width 行列幅
-     * @param {number} height 行列高さ
-     * @param {number} [sd=1.0] 標準偏差
-     * @returns {PixelFIRMatrix}
-     */
-    static makeGaussianFilter(width: number, height: number, sd?: number): PixelFIRMatrix;
-    /**
-     * 円形の畳み込み行列を生成
-     * @static
-     * @param {number} r 直径（行列の一辺）
-     * @returns {PixelFIRMatrix}
-     */
-    static makeCircle(r: number): PixelFIRMatrix;
-    /**
-     * 2次元配列で初期化
-     * @param {Array<Array<number>>} matrix フィルタ行列（[y][x]の2次元配列）
-     */
-    constructor(matrix: Array<Array<number>>);
-    height: number;
-    width: number;
-    matrix: number[][];
-    /**
-     * このフィルタ行列の複製を作成
-     * @returns {PixelFIRMatrix}
-     */
-    clone(): PixelFIRMatrix;
-    /**
-     * フィルタ行列の周囲（エッジ）を時計回りに回転
-     * @param {number} val 回転量（正の整数で右回り）
-     * @returns {PixelFIRMatrix} 回転後の新しい行列
-     */
-    rotateEdge(val: number): PixelFIRMatrix;
-    /**
-     * 全要素を指定値で乗算
-     * @param {number} val 乗算値
-     * @returns {PixelFIRMatrix}
-     */
-    mul(val: number): PixelFIRMatrix;
-    /**
-     * 全要素の合計値を返す
-     * @returns {number}
-     */
-    sum(): number;
-    /**
-     * 合計値で正規化（全体の合計が1になるようスケーリング）
-     * @returns {PixelFIRMatrix}
-     */
-    normalize(): PixelFIRMatrix;
-    /**
-     * フィルタの中心に指定値を加算
-     * @param {number} val
-     * @returns {PixelFIRMatrix}
-     */
-    addCenter(val: number): PixelFIRMatrix;
 }
 /**
  * 画像座標のラッピング（境界判定）用のクラス（範囲内のみ許可）

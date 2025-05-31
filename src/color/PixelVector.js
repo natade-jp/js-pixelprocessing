@@ -1,14 +1,17 @@
-﻿/**
+﻿import PixelColorRGBA from "./PixelColorRGBA.js";
+
+/**
  * 3次元ベクトルクラス
- * 画像処理やノーマルマップでの方向ベクトル表現等に利用します
+ * 画像処理やノーマルマップでの方向ベクトル表現等に利用します。
  *
+ * @class
  * @module PixelProcessing
  * @author natade (https://github.com/natade-jp)
  * @license MIT
+ * @example
+ * const v = new PixelVector(1, 2, 3);
+ * const cross = v.cross(new PixelVector(0, 0, 1));
  */
-
-import PixelColorRGBA from "./PixelColorRGBA.js";
-
 export default class PixelVector {
 	/**
 	 * 3次元ベクトルを生成
@@ -17,8 +20,25 @@ export default class PixelVector {
 	 * @param {number} z Z成分
 	 */
 	constructor(x, y, z) {
+		/**
+		 * X成分
+		 * @type {number}
+		 * @public
+		 */
 		this.x = x;
+
+		/**
+		 * Y成分
+		 * @type {number}
+		 * @public
+		 */
 		this.y = y;
+
+		/**
+		 * Z成分
+		 * @type {number}
+		 * @public
+		 */
 		this.z = z;
 	}
 

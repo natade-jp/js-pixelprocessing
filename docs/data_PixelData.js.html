@@ -45,21 +45,26 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>﻿/**
- * 画像データ基底クラス（ラスタ画像データ抽象基盤）
- * RGBAやY（グレースケール）画像データを扱う基底クラス
- *
- * @module PixelProcessing
- * @author natade (https://github.com/natade-jp)
- * @license MIT
- */
-
-import PixelBlend from "../color/PixelBlend.js";
+            <pre class="prettyprint source linenums"><code>﻿import PixelBlend from "../color/PixelBlend.js";
 import PixelColor from "../color/PixelColor.js";
 import PixelWrap from "../selecter/PixelWrap.js";
 import PixelInterpolation from "../selecter/PixelInterpolation.js";
 import PixelFIRMatrix from "../fir/PixelFIRMatrix.js";
 
+/**
+ * 画像データ基底クラス（ラスタ画像データ抽象基盤）
+ * RGBAやY（グレースケール）画像データを扱う抽象基底クラスです。
+ * 派生クラスで具体的なデータ管理・画像処理を実装します。
+ *
+ * @class
+ * @module PixelProcessing
+ * @author natade (https://github.com/natade-jp)
+ * @license MIT
+ * @example
+ * // 派生クラスを利用
+ * const img = new PixelDataRGBA(320, 240);
+ * img.setPixel(0, 0, new PixelColorRGBA([255, 0, 0, 255]));
+ */
 export default class PixelData {
 	/**
 	 * 画像データクラス
@@ -69,44 +74,56 @@ export default class PixelData {
 	 */
 	constructor(arg1, arg2) {
 		/**
-		 * 画像幅
+		 * 画像幅（ピクセル数）
 		 * @type {number}
+		 * @public
 		 */
 		this.width = 1;
 
 		/**
-		 * 画像高さ
+		 * 画像高さ（ピクセル数）
 		 * @type {number}
+		 * @public
 		 */
 		this.height = 1;
 
 		/**
 		 * 書き込み時グローバルアルファ（0.0～1.0）
 		 * @type {number}
+		 * @public
 		 */
 		this.globalAlpha = 1.0;
 
 		/**
-		 * 画素データ
+		 * 画素データ本体
+		 * 派生クラスで具体的型が決まる
+		 *
+		 * - RGBA Uint8ClampedArray 各画素4チャンネル（R,G,B,A）ずつ格納。長さは width * height * 4
+		 * - Y Float32Array グレースケール（Y成分）画素データ本体 各画素1チャンネルずつ格納。長さは width * height
+		 *
 		 * @type {Uint8ClampedArray|Float32Array}
+		 * @public
 		 */
 		this.data = null;
 
 		/**
-		 * ブレンドモード
+		 * 書き込み時のブレンドモード管理オブジェクト
 		 * @type {PixelBlend}
+		 * @public
 		 */
 		this.blend = new PixelBlend(PixelBlend.MODE.NONE);
 
 		/**
-		 * 範囲外アクセスの処理ラッパー
+		 * 範囲外アクセスのラッピング方式管理
 		 * @type {PixelWrap}
+		 * @public
 		 */
 		this.wrap = new PixelWrap(PixelWrap.MODE.INSIDE, this.width, this.height);
 
 		/**
-		 * 補間方式
+		 * 補間方式管理
 		 * @type {PixelInterpolation}
+		 * @public
 		 */
 		this.ip = new PixelInterpolation(PixelInterpolation.MODE.NEAREST_NEIGHBOR);
 
@@ -472,7 +489,8 @@ export default class PixelData {
 							continue;
 						}
 						const newfilter =
-							exptable[Math.floor(tgtcolor.normColor(thiscolor, PixelColor.NORM_MODE.EUGRID))] * m[my][mx];
+							exptable[Math.floor(tgtcolor.normColor(thiscolor, PixelColor.NORM_MODE.EUGRID))] *
+							m[my][mx];
 						newcolor = newcolor.addColor(tgtcolor.mul(newfilter));
 						sumfilter += newfilter;
 					}

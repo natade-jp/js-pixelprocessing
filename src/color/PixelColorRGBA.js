@@ -1,13 +1,18 @@
-﻿/**
+﻿import PixelColor from "./PixelColor.js";
+
+/**
  * RGBA色（Red, Green, Blue, Alpha）を扱う色クラス
+ * 各成分を0～255の配列として保持し、色演算やアルファ合成などの画像処理をサポートします。
  *
+ * @class
+ * @extends PixelColor
  * @module PixelProcessing
  * @author natade (https://github.com/natade-jp)
  * @license MIT
+ * @example
+ * const color = new PixelColorRGBA([255, 128, 64, 200]);
+ * const brighter = color.add(10); // 全成分に+10
  */
-
-import PixelColor from "./PixelColor.js";
-
 export default class PixelColorRGBA extends PixelColor {
 	/**
 	 * RGBA色を生成
@@ -16,6 +21,13 @@ export default class PixelColorRGBA extends PixelColor {
 	constructor(color) {
 		super();
 		// ディープコピー
+
+		/**
+		 * RGBA各成分を格納する配列
+		 * 形式: [R, G, B, A]（各0～255, floatも許容）
+		 * @type {number[]}
+		 * @private
+		 */
 		this.rgba = [color[0], color[1], color[2], color[3]];
 	}
 
